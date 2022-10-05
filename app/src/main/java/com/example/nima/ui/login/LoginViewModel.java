@@ -58,14 +58,7 @@ public class LoginViewModel extends ViewModel {
      * @return true if the username is valid, false otherwise
      */
     private boolean isUserNameValid(String username) {
-        if (username == null) {
-            return false;
-        }
-        if (username.contains("@")) {
             return Patterns.EMAIL_ADDRESS.matcher(username).matches();
-        } else {
-            return !username.trim().isEmpty();
-        }
     }
 
     /**
@@ -75,6 +68,6 @@ public class LoginViewModel extends ViewModel {
      * @return true if the password is valid, false otherwise
      */
     private boolean isPasswordValid(String password) {
-        return password != null && password.trim().length() >= 3;
+        return password != null && password.trim().length() >= 6;
     }
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "615849607309",
+    "project_id": "e1-t2-e7277",
+    "storage_bucket": "e1-t2-e7277.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:615849607309:android:a8adc6f2da2f9a44d722c4",
+        "android_client_info": {
+          "package_name": "com.example.nima"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "615849607309-71m7ubtqgji844kthmaqcmdmc9ev6tr8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD3fPobK0nNmAfmm_fm5hY5z9QSGML4lLg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "615849607309-71m7ubtqgji844kthmaqcmdmc9ev6tr8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

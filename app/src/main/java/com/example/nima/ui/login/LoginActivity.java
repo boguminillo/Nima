@@ -23,10 +23,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.nima.CalendarActivity;
-import com.example.nima.R;
-import com.example.nima.ui.login.LoginViewModel;
-import com.example.nima.ui.login.LoginViewModelFactory;
+import com.example.nima.MainActivity;
 import com.example.nima.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
@@ -129,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
     private void updateUiWithUser(LoggedInUserView model) {
         // TODO : initiate successful logged in experience
         // Jump to Calendar Activity
-         Intent intent = new Intent(this, CalendarActivity.class);
+         Intent intent = new Intent(this, MainActivity.class);
          startActivity(intent);
     }
 

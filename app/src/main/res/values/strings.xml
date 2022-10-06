@@ -5,8 +5,8 @@
     <string name="prompt_password">Contraseña</string>
     <string name="action_sign_in">Entrar</string>
     <string name="action_sign_in_short">Entrar</string>
-    <string name="invalid_username">"El nombre de usuario no es valido"</string>
-    <string name="invalid_password">"La contraseña debe tener al menos 3 caracteres"</string>
+    <string name="invalid_username">"El email no es valido"</string>
+    <string name="invalid_password">"La contraseña debe tener al menos 6 caracteres"</string>
     <string name="login_failed">"Login failed"</string>
     <!--    String related to welcome screen -->
     <string name="welcome">"Bienvenido a la aplicacion!"</string>

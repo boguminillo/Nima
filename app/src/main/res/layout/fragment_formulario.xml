@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
@@ -11,11 +12,15 @@
         android:id="@+id/idNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:hint="Nombre"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Nombre"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="74dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.139"
         tools:ignore="MissingConstraints" />
 
     <EditText
@@ -24,31 +29,43 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textEmailAddress"
-        android:text="E-mail"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="166dp"
+        android:hint="Email"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.285"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/idtelefono"
+        android:id="@+id/idTelefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="phone"
-        android:text="Telefono"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="263dp"
+        android:hint="Telefono"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.444"
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/iddireccion"
+        android:id="@+id/idDireccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPostalAddress"
-        android:text="Direccion"
-        tools:layout_editor_absoluteX="103dp"
-        tools:layout_editor_absoluteY="358dp"
+        android:hint="Direccion"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.588"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -57,8 +74,11 @@
         android:layout_height="wrap_content"
         android:background="#673AB7"
         android:text="SIGUIENTE"
-        tools:layout_editor_absoluteX="149dp"
-        tools:layout_editor_absoluteY="446dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.793"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

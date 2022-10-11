@@ -22,4 +22,11 @@
         android:name="com.example.nima.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_form"
+        android:name="com.example.nima.ui.formulario.Formulario"
+        android:label="@string/formulario"
+        tools:layout="@layout/fragment_formulario"
+        />
 </navigation>

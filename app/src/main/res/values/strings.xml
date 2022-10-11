@@ -21,5 +21,6 @@
     <string name="menu_home">Calendario</string>
     <string name="menu_gallery">Galeria</string>
     <string name="menu_slideshow">Contactos</string>
-    <string name="menu_contact">Contactos</string>
+    <string name="formulario">Formulario</string>
+    <string name="mapa">Mapa</string>
 </resources>

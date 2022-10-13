@@ -2,16 +2,16 @@ package com.example.nima;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 
-import com.example.nima.data.LoginDataSource;
-import com.example.nima.data.LoginRepository;
 import com.example.nima.ui.login.LoginActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashScreen extends AppCompatActivity {
 
     @Override

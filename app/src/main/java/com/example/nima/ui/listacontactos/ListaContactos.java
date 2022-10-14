@@ -13,26 +13,25 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.nima.R;
+import com.example.nima.databinding.FragmentListaContactosBinding;
 
 public class ListaContactos extends Fragment {
 
     private ListaContactosViewModel mViewModel;
+    private FragmentListaContactosBinding binding;
 
     public static ListaContactos newInstance() {
         return new ListaContactos();
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_lista_contactos, container, false);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mViewModel = new ViewModelProvider(this).get(ListaContactosViewModel.class);
+
+        AdapterContacto adapterContacto = new AdapterContacto(getContext(), R.layout.fragment_lista_contactos, ListaContactosViewModel.getContactos());
+
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(ListaContactosViewModel.class);
-        // TODO: Use the ViewModel
-    }
 
 }

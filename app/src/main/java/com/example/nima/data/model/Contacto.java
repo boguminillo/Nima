@@ -2,8 +2,10 @@ package com.example.nima.data.model;
 
 public abstract class Contacto {
 
-    private  String nombre;
+    private long id;
+    private String nombre;
     private String direccion;
+
     private String telefono;
     private String email;
 
@@ -12,6 +14,14 @@ public abstract class Contacto {
         this.direccion = direccion;
         this.telefono = telefono;
         this.email = email;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getNombre() {

@@ -4,6 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.nima.databinding.FragmentFormularioBinding;
+
 
 public class FormularioViewModel extends ViewModel {
     // TODO: Implement the ViewModel

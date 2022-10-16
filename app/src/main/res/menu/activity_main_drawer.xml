@@ -23,6 +23,11 @@
             android:title="@string/formulario"
             android:visible="true" />
         <item
+            android:id="@+id/nav_lista_de_contactos"
+            android:icon="?attr/actionModeShareDrawable"
+            android:title="@string/lista_de_contactos"
+            android:visible="true" />
+        <item
 
             android:id="@+id/nav_mapa"
             android:icon="@android:drawable/ic_dialog_map"

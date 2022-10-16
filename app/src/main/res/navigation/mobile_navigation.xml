@@ -29,4 +29,11 @@
         android:label="@string/formulario"
         tools:layout="@layout/fragment_formulario"
         />
+
+    <fragment
+        android:id="@+id/nav_lista_de_contactos"
+        android:name="com.example.nima.ui.listacontactos.ListaContactos"
+        android:label="@string/lista_de_contactos"
+        tools:layout="@layout/fragment_lista_contactos"
+        />
 </navigation>

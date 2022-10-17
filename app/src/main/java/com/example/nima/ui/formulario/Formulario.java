@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModelProvider;
 import android.os.Bundle;
 
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.widget.Button;
@@ -17,23 +16,22 @@ import com.example.nima.ui.login.LoginViewModelFactory;
 
 public class Formulario extends Fragment {
 
-    private FormularioViewModel mViewModel;
+   private FormularioViewModel mViewModel;
 
     public static Formulario newInstance() {
         return new Formulario();
     }
 
-    private FragmentFormularioBinding binding;
+   private FragmentFormularioBinding binding;
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         binding = FragmentFormularioBinding.inflate(getLayoutInflater());
 
-
-        mViewModel = new ViewModelProvider(this, new LoginViewModelFactory())
-                .get(FormularioViewModel.class);
+        //Linea que hace petar al entrar al formulario
+       //mViewModel = new ViewModelProvider(this, new LoginViewModelFactory()).get(FormularioViewModel.class);
 
         final EditText etNombre = binding.idNombre;
         final EditText etDireccion = binding.idDireccion;
@@ -41,6 +39,11 @@ public class Formulario extends Fragment {
         final EditText etEmail = binding.idEmail;
         final Button btnSiguiente = binding.idBoton;
 
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 
 }

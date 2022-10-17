@@ -24,4 +24,10 @@
     <string name="formulario">Formulario</string>
     <string name="mapa">Mapa</string>
     <string name="lista_de_contactos">Lista de Contactos</string>
+    <string name="nombre">Nombre</string>
+    <string name="direccion">Direccion</string>
+    <string name="telefono">Telefono</string>
+    <string name="email">Email</string>
+    <string name="siguiente">SIGUIENTE</string>
+
 </resources>

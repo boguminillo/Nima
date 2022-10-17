@@ -27,8 +27,7 @@
         android:id="@+id/nav_form"
         android:name="com.example.nima.ui.formulario.Formulario"
         android:label="@string/formulario"
-        tools:layout="@layout/fragment_formulario"
-        />
+        tools:layout="@layout/fragment_formulario" />
 
     <fragment
         android:id="@+id/nav_lista_de_contactos"

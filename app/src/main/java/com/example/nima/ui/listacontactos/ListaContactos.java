@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
+
 import androidx.fragment.app.Fragment;
 
 import com.example.nima.R;
@@ -20,9 +20,9 @@ public class ListaContactos extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate( Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(ListaContactosViewModel.class);
+      mViewModel = new ViewModelProvider(this).get(ListaContactosViewModel.class);
 
         AdapterContacto adapterContacto = new AdapterContacto(getContext(), R.layout.fragment_lista_contactos, ListaContactosViewModel.getContactos());
 

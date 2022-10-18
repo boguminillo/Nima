@@ -11,6 +11,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.nima.R;
+import com.example.nima.SplashScreen;
+import com.example.nima.ui.login.LoginActivity;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class CalendarActivity extends AppCompatActivity {
@@ -52,5 +57,7 @@ public class CalendarActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 }

@@ -6,12 +6,9 @@ import android.os.Bundle;
 
 
 import androidx.fragment.app.Fragment;
-
 import android.widget.Button;
 import android.widget.EditText;
-
 import com.example.nima.databinding.FragmentFormularioBinding;
-import com.example.nima.ui.login.LoginViewModelFactory;
 
 
 public class Formulario extends Fragment {
@@ -30,8 +27,7 @@ public class Formulario extends Fragment {
 
         binding = FragmentFormularioBinding.inflate(getLayoutInflater());
 
-        //Linea que hace petar al entrar al formulario
-       //mViewModel = new ViewModelProvider(this, new LoginViewModelFactory()).get(FormularioViewModel.class);
+        mViewModel = new ViewModelProvider(this).get(FormularioViewModel.class);
 
         final EditText etNombre = binding.idNombre;
         final EditText etDireccion = binding.idDireccion;
@@ -40,6 +36,8 @@ public class Formulario extends Fragment {
         final Button btnSiguiente = binding.idBoton;
 
     }
+
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();

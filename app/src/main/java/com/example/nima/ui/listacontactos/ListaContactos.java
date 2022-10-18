@@ -24,7 +24,7 @@ public class ListaContactos extends Fragment {
     public static ListaContactos newInstance() {
         return new ListaContactos();
     }
-
+//Este metodo muestra la pantalla del fragmento lista contactos
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {

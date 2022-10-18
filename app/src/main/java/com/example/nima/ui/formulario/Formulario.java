@@ -29,7 +29,7 @@ public class Formulario extends Fragment {
 
    private FragmentFormularioBinding binding;
 
-
+////Este metodo muestra la pantalla del fragmento formulario
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {

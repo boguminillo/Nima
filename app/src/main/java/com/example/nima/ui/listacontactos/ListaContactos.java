@@ -1,14 +1,20 @@
 package com.example.nima.ui.listacontactos;
 
+import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 
 import androidx.fragment.app.Fragment;
 
 import com.example.nima.R;
 import com.example.nima.databinding.FragmentListaContactosBinding;
+
+import javax.annotation.Nullable;
 
 public class ListaContactos extends Fragment {
 
@@ -18,6 +24,14 @@ public class ListaContactos extends Fragment {
     public static ListaContactos newInstance() {
         return new ListaContactos();
     }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_lista_contactos, container, false);
+    }
+
+
 
     @Override
     public void onCreate( Bundle savedInstanceState) {

@@ -32,6 +32,23 @@ public class CalendarActivity extends AppCompatActivity {
         añadirEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if (!Titulo.getText().toString().isEmpty() && !Ubicacion.getText().toString().isEmpty() && !Descripcion.getText().toString().isEmpty()) {
+                    Intent intent = new Intent(Intent.ACTION_INSERT);
+                    intent.setData(CalendarContract.CONTENT_URI);
+                    intent.putExtra(CalendarContract.Events.TITLE, Titulo.getText().toString());
+                    intent.putExtra(CalendarContract.Events.EVENT_LOCATION, Ubicacion.getText().toString());
+                    intent.putExtra(CalendarContract.Events.DESCRIPTION, Descripcion.getText().toString());
+                    intent.putExtra(CalendarContract.Events.ALL_DAY, "true");
+                    intent.putExtra(Intent.EXTRA_EMAIL, "endiuri6@gmail.com, uriagerekaendika@gmail.com");
+
+                    if (intent.resolveActivity(getPackageManager()) != null) {
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(CalendarActivity.this, "No hay aplicacion capaz de soportar esta accion", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(CalendarActivity.this, "Rellena todos los campos", Toast.LENGTH_SHORT).show();
+                }
 
             }
         });

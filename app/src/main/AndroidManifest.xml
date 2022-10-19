@@ -46,6 +46,10 @@
             android:exported="false"
             android:theme="@style/Theme.Nima" />
         <activity
+            android:name=".ui.calendario.CalendarActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Nima" />
+        <activity
             android:name=".SplashScreen"
             android:exported="false"
             android:theme="@style/Theme.Nima">

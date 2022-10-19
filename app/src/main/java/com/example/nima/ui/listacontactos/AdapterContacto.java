@@ -48,8 +48,8 @@ public class AdapterContacto extends BaseAdapter {
         v = layoutInflater.inflate(R.layout.fragment_lista_contactos, null);
 
         String nombre = contactos.get(position).getNombre();
-        TextView tvNombre = v.findViewById(R.id.tvNombreListaContactos);
-        tvNombre.setText(nombre);
+//        TextView tvNombre = v.findViewById(R.id.tvNombreListaContactos);
+//        tvNombre.setText(nombre);
 
         return v;
     }

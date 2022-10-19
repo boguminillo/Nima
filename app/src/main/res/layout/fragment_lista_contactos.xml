@@ -2,23 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
     tools:context=".ui.listacontactos.ListaContactos">
-    <ImageView
-        android:id="@+id/imageView"
-        app:srcCompat="@android:drawable/btn_star_big_on"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_margin="25dp" />
-    <TextView
-        android:id="@+id/tvNombreListaContactos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:text="TextView"
-        android:textColor="#333" />
+
+    <ListView
+        android:id="@+id/listViewContactos"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

@@ -23,38 +23,40 @@ import java.util.Map;
 public class ContactoViewModel extends ViewModel {
 
     private static CollectionReference contactosRef = FirebaseFirestore.getInstance().collection("contactos");
-//    private static MutableLiveData<Map<String, Object>> lista = new MutableLiveData<>();
-//
-//    LiveData<Map<String, Object>> getLista() {
-//        return lista;
-//    }
+    private static MutableLiveData<Map<String, Object>> lista = new MutableLiveData<>();
 
-//    public static void getNombresList() {
-//        contactosRef.get().addOnCompleteListener(task -> {
-//            if (task.isSuccessful()) {
-//                Map<String, Object> mapaContactos = new HashMap<>();
-//                for (Contacto c : task.getResult().toObjects(Contacto.class)) {
-//                    mapaContactos.put(c.getNombre(), c);
-//                }
-//                lista.setValue(mapaContactos);
-//            } else {
-//                String parar;
-//            }
-//        });
-//    }
-
-    public static ArrayList<String> getNombresList() {
-        Contacto contacto = new Cliente("Cliente1", "Calle 1", "123456789", "cliente1@cliente.com", false);
-        Contacto contacto2 = new Cliente("Cliente2", "Calle 2", "987654321", "cliente2@cliente.com", true);
-        Contacto contacto3 = new Proveedor("Proveedor1", "Calle 3", "123456789", "proveedor1@proveedor.com:", "www.proveedor1.com");
-        Contacto contacto4 = new Proveedor("Proveedor2", "Calle 4", "987654321", "proveedor2@proveedor.com:", "www.proveedor2.com");
-        addContacto(contacto);
-        addContacto(contacto2);
-        addContacto(contacto3);
-        addContacto(contacto4);
-        ArrayList<String> nombres = new ArrayList<>(Arrays.asList(contacto.getNombre(), contacto2.getNombre(), contacto3.getNombre(), contacto4.getNombre()));
-        return nombres;
+    LiveData<Map<String, Object>> getLista() {
+        return lista;
     }
+
+    public static void getNombresList() {
+        // con el whereIn estamos cogiendo solo clientes
+        contactosRef.whereIn("vip", Arrays.asList(true, false)).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Map<String, Object> mapaContactos = new HashMap<>();
+                //TODO: revisar lo de la clase
+                for (Cliente c : task.getResult().toObjects(Cliente.class)) {
+                    mapaContactos.put(c.getNombre(), c);
+                }
+                lista.setValue(mapaContactos);
+            } else {
+                String parar;
+            }
+        });
+    }
+
+//    public static ArrayList<String> getNombresList() {
+//        Contacto contacto = new Cliente("Cliente1", "Calle 1", "123456789", "cliente1@cliente.com", false);
+//        Contacto contacto2 = new Cliente("Cliente2", "Calle 2", "987654321", "cliente2@cliente.com", true);
+//        Contacto contacto3 = new Proveedor("Proveedor1", "Calle 3", "123456789", "proveedor1@proveedor.com:", "www.proveedor1.com");
+//        Contacto contacto4 = new Proveedor("Proveedor2", "Calle 4", "987654321", "proveedor2@proveedor.com:", "www.proveedor2.com");
+//        addContacto(contacto);
+//        addContacto(contacto2);
+//        addContacto(contacto3);
+//        addContacto(contacto4);
+//        ArrayList<String> nombres = new ArrayList<>(Arrays.asList(contacto.getNombre(), contacto2.getNombre(), contacto3.getNombre(), contacto4.getNombre()));
+//        return nombres;
+//    }
 
     public static void addContacto(Contacto contacto) {
         FirebaseFirestore db = FirebaseFirestore.getInstance();

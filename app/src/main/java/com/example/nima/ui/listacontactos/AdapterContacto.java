@@ -36,7 +36,7 @@ public class AdapterContacto extends BaseAdapter {
 
     @Override
     public long getItemId(int position) {
-        return contactos.get(position).getId();
+        return contactos.get(position).getNombre().hashCode();
     }
 
     @Override

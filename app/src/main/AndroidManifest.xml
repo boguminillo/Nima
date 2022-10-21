@@ -13,7 +13,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Nima"
         tools:targetApi="31">
-
+        <activity
+            android:name=".FormularioProveedor"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -27,14 +33,12 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />
-
-<!--        TODO: Hacer que inicie en SplasScreen antes de la entrega -->
+            android:value="YOUR_API_KEY" /> <!-- TODO: Hacer que inicie en SplasScreen antes de la entrega -->
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/title_activity_main"
-            android:theme="@style/Theme.Nima" >
+            android:theme="@style/Theme.Nima">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -53,11 +57,13 @@
             android:name=".SplashScreen"
             android:exported="false"
             android:theme="@style/Theme.Nima">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
     </application>
 

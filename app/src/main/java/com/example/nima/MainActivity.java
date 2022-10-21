@@ -1,14 +1,20 @@
 package com.example.nima;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Menu;
 
+
 import com.example.nima.ui.calendario.CalendarActivity;
-import com.example.nima.ui.formulario.FormularioViewModel;
-import com.google.android.material.snackbar.Snackbar;
+
+import com.example.nima.ui.formulario.Formulario;
+import com.example.nima.ui.formularioProveedor.FormularioProveedor;
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
+
 import com.google.android.material.navigation.NavigationView;
 
 import androidx.navigation.NavController;
@@ -25,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
+    FloatingActionsMenu menubotones;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +41,33 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         setSupportActionBar(binding.appBarMain.toolbar);
-        binding.appBarMain.fab.setOnClickListener(new View.OnClickListener() {
+
+
+
+        binding.appBarMain.btnCliente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
             Intent i = new Intent(getApplicationContext(), CalendarActivity.class);
             startActivity(i);
             }
         });
+        binding.appBarMain.btnEven.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), CalendarActivity.class);
+                startActivity(i);
+            }
+        });
+        binding.appBarMain.btnProveedor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getApplicationContext(), FormularioProveedor.class);
+                startActivity(i);
+            }
+        });
+
+
+
         DrawerLayout drawer = binding.drawerLayout;
         NavigationView navigationView = binding.navView;
         // Passing each menu ID as a set of Ids because each

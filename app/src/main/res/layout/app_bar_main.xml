@@ -30,21 +30,53 @@
         layout="@layout/content_main"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginEnd="675dp"
+        android:layout_marginBottom="675dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintEnd_toStartOf="@+id/appBarLayout2" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/btn_menu"
+        android:layout_width="64dp"
+        android:layout_height="316dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        tools:ignore="MissingConstraints">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_proveedor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+
+            android:layout_marginBottom="-8dp"
+            app:fabSize="mini"
+            app:fab_addButtonColorNormal="@color/design_default_color_primary"
+            app:fab_addButtonColorPressed="@color/design_default_color_primary"
+
+            />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_even"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="mini"
+            app:fab_addButtonColorNormal="@color/design_default_color_primary_dark"
+            app:fab_icon="?attr/actionModePasteDrawable" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_cliente"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="mini"
+            app:fab_addButtonColorNormal="@color/design_default_color_primary_dark"
+            app:fab_icon="?attr/actionModeSelectAllDrawable"
+
+            />
+
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

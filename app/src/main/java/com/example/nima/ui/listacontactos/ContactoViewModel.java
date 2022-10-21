@@ -24,9 +24,13 @@ public class ContactoViewModel extends ViewModel {
 
     private static CollectionReference contactosRef = FirebaseFirestore.getInstance().collection("contactos");
     private static MutableLiveData<ArrayList<String>> nombres = new MutableLiveData<>();
+    private static MutableLiveData<Contacto> contacto = new MutableLiveData<>();
 
     LiveData<ArrayList<String>> getNombres() {
         return nombres;
+    }
+    LiveData<Contacto> getContacto() {
+        return contacto;
     }
 
     public static void getNombresClientes() {
@@ -56,18 +60,19 @@ public class ContactoViewModel extends ViewModel {
         });
     }
 
-//    public static ArrayList<String> getNombresList() {
-//        Contacto contacto = new Cliente("Cliente1", "Calle 1", "123456789", "cliente1@cliente.com", false);
-//        Contacto contacto2 = new Cliente("Cliente2", "Calle 2", "987654321", "cliente2@cliente.com", true);
-//        Contacto contacto3 = new Proveedor("Proveedor1", "Calle 3", "123456789", "proveedor1@proveedor.com:", "www.proveedor1.com");
-//        Contacto contacto4 = new Proveedor("Proveedor2", "Calle 4", "987654321", "proveedor2@proveedor.com:", "www.proveedor2.com");
-//        addContacto(contacto);
-//        addContacto(contacto2);
-//        addContacto(contacto3);
-//        addContacto(contacto4);
-//        ArrayList<String> nombres = new ArrayList<>(Arrays.asList(contacto.getNombre(), contacto2.getNombre(), contacto3.getNombre(), contacto4.getNombre()));
-//        return nombres;
-//    }
+    public static void getContacto(String nombre) {
+        contactosRef.whereEqualTo("nombre", nombre).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    if (document.get("vip") != null) {
+                        contacto.setValue(document.toObject(Cliente.class));
+                    } else {
+                        contacto.setValue(document.toObject(Proveedor.class));
+                    }
+                }
+            }
+        });
+    }
 
     public static void addContacto(Contacto contacto) {
         contactosRef.document(contacto.getNombre()).set(contacto);

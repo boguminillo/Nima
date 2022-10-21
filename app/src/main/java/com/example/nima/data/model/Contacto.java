@@ -10,6 +10,8 @@ public abstract class Contacto {
     private String telefono;
     private String email;
 
+    public Contacto() {}
+
     public Contacto(String nombre, String direccion, String telefono, String email) {
         this.nombre = nombre;
         this.direccion = direccion;

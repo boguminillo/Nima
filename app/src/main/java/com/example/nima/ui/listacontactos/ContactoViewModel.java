@@ -16,12 +16,13 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 public class ContactoViewModel extends ViewModel {
 
-    private static FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private static CollectionReference contactosRef = db.collection("contactos");
+    private static CollectionReference contactosRef = FirebaseFirestore.getInstance().collection("contactos");
     private static MutableLiveData<Map<String, Object>> lista = new MutableLiveData<>();
 
     LiveData<Map<String, Object>> getLista() {
@@ -29,14 +30,15 @@ public class ContactoViewModel extends ViewModel {
     }
 
     public static void getNombresList() {
-        Task<QuerySnapshot> tareaGet = contactosRef.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                if (task.isSuccessful()) {
-                    for (QueryDocumentSnapshot document : task.getResult()) {
-                        lista.setValue(document.getData());
-                    }
+        // con el whereIn estamos cogiendo solo clientes
+        contactosRef.whereIn("vip", Arrays.asList(true, false)).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Map<String, Object> mapaContactos = new HashMap<>();
+                //TODO: revisar lo de la clase
+                for (Cliente c : task.getResult().toObjects(Cliente.class)) {
+                    mapaContactos.put(c.getNombre(), c);
                 }
+                lista.setValue(mapaContactos);
             }
         });
     }
@@ -46,15 +48,11 @@ public class ContactoViewModel extends ViewModel {
 //        Contacto contacto2 = new Cliente("Cliente2", "Calle 2", "987654321", "cliente2@cliente.com", true);
 //        Contacto contacto3 = new Proveedor("Proveedor1", "Calle 3", "123456789", "proveedor1@proveedor.com:", "www.proveedor1.com");
 //        Contacto contacto4 = new Proveedor("Proveedor2", "Calle 4", "987654321", "proveedor2@proveedor.com:", "www.proveedor2.com");
-//        contacto.setId(0);
-//        db.collection("contactos").add(contacto);
+//        addContacto(contacto);
 //        addContacto(contacto2);
 //        addContacto(contacto3);
 //        addContacto(contacto4);
-//        ArrayList<String> nombres = new ArrayList<>();
-//        for (Contacto c : db.collection("contactos").get().getResult().toObjects(Contacto.class)) {
-//            nombres.add(c.getNombre());
-//        }
+//        ArrayList<String> nombres = new ArrayList<>(Arrays.asList(contacto.getNombre(), contacto2.getNombre(), contacto3.getNombre(), contacto4.getNombre()));
 //        return nombres;
 //    }
 

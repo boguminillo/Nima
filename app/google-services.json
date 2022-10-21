@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "615849607309",
-    "project_id": "e1-t2-e7277",
-    "storage_bucket": "e1-t2-e7277.appspot.com"
+    "project_number": "419757024316",
+    "project_id": "pruebafirebase-91434",
+    "storage_bucket": "pruebafirebase-91434.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:615849607309:android:a8adc6f2da2f9a44d722c4",
+        "mobilesdk_app_id": "1:419757024316:android:3bbb5fea854ff490bb8f39",
         "android_client_info": {
           "package_name": "com.example.nima"
         }
       },
       "oauth_client": [
         {
-          "client_id": "615849607309-71m7ubtqgji844kthmaqcmdmc9ev6tr8.apps.googleusercontent.com",
+          "client_id": "419757024316-flk56l8a9fa2onp17efag884ksbqcm2f.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD3fPobK0nNmAfmm_fm5hY5z9QSGML4lLg"
+          "current_key": "AIzaSyAU0jKykR4SWn4aZfniSoavZz5Jc_mmuHM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "615849607309-71m7ubtqgji844kthmaqcmdmc9ev6tr8.apps.googleusercontent.com",
+              "client_id": "419757024316-flk56l8a9fa2onp17efag884ksbqcm2f.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

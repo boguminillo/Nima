@@ -29,35 +29,18 @@ public class ListaContactos extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        FragmentListaContactosBinding binding = FragmentListaContactosBinding.inflate(getLayoutInflater());
-        ListView lvContactos = binding.listViewContactos;
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        ContactoViewModel.getNombresList();
+        View vista = inflater.inflate(R.layout.fragment_lista_contactos, container, false);
         ContactoViewModel mViewModel = new ViewModelProvider(this).get(ContactoViewModel.class);
-        mViewModel.getLista().observe(this, contactos -> {
+        mViewModel.getLista().observe(getViewLifecycleOwner(), contactos -> {
+            ListView lvContactos = vista.findViewById(R.id.listViewContactos);
             ArrayList<String> strContactos = new ArrayList<>(contactos.keySet());
             ArrayAdapter<String> adaptador = new ArrayAdapter<String>((Context) getActivity(), android.R.layout.simple_list_item_1, strContactos);
             lvContactos.setAdapter(adaptador);
         });
+        return vista;
     }
-
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        ContactoViewModel.getNombresList();
-        return inflater.inflate(R.layout.fragment_lista_contactos, container, false);
-    }
-
-    //Este metodo muestra la pantalla del fragmento lista contactos
-//    @Override
-//    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-//                             @Nullable Bundle savedInstanceState) {
-//        View vista = inflater.inflate(R.layout.fragment_lista_contactos, container, false);
-//        ListView lvContactos = vista.findViewById(R.id.listViewContactos);
-//        ArrayList<String> contactos = ContactoViewModel.getNombresList();
-//        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, contactos);
-//        lvContactos.setAdapter(adaptador);
-//        return vista;
-//    }
 
 }

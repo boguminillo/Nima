@@ -39,8 +39,6 @@ public class ContactoViewModel extends ViewModel {
                     mapaContactos.put(c.getNombre(), c);
                 }
                 lista.setValue(mapaContactos);
-            } else {
-                String parar;
             }
         });
     }
@@ -59,9 +57,7 @@ public class ContactoViewModel extends ViewModel {
 //    }
 
     public static void addContacto(Contacto contacto) {
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        db.collection("contactos").document(contacto.getNombre()).set(contacto);
-//        contactosRef.document(contacto.getNombre()).set(contacto);
+        contactosRef.document(contacto.getNombre()).set(contacto);
     }
     // TODO: Implement the ViewModel
 }

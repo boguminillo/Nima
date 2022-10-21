@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 
@@ -31,15 +32,19 @@ public class ListaContactos extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        ContactoViewModel.getNombresList();
+        ContactoViewModel.getNombresClientes();
         View vista = inflater.inflate(R.layout.fragment_lista_contactos, container, false);
         ContactoViewModel mViewModel = new ViewModelProvider(this).get(ContactoViewModel.class);
-        mViewModel.getLista().observe(getViewLifecycleOwner(), contactos -> {
+        // este observer se ejecuta cuando se actualiza la lista de nombres
+        mViewModel.getNombres().observe(getViewLifecycleOwner(), contactos -> {
             ListView lvContactos = vista.findViewById(R.id.listViewContactos);
-            ArrayList<String> strContactos = new ArrayList<>(contactos.keySet());
-            ArrayAdapter<String> adaptador = new ArrayAdapter<String>((Context) getActivity(), android.R.layout.simple_list_item_1, strContactos);
+            ArrayAdapter<String> adaptador = new ArrayAdapter<String>((Context) getActivity(), android.R.layout.simple_list_item_1, contactos);
             lvContactos.setAdapter(adaptador);
         });
+        Button btnClienes = vista.findViewById(R.id.bntClientes);
+        btnClienes.setOnClickListener(v -> ContactoViewModel.getNombresClientes());
+        Button btnProveedores = vista.findViewById(R.id.btnProveedores);
+        btnProveedores.setOnClickListener(v -> ContactoViewModel.getNombresProveedores());
         return vista;
     }
 

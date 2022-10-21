@@ -23,22 +23,35 @@ import java.util.Map;
 public class ContactoViewModel extends ViewModel {
 
     private static CollectionReference contactosRef = FirebaseFirestore.getInstance().collection("contactos");
-    private static MutableLiveData<Map<String, Object>> lista = new MutableLiveData<>();
+    private static MutableLiveData<ArrayList<String>> nombres = new MutableLiveData<>();
 
-    LiveData<Map<String, Object>> getLista() {
-        return lista;
+    LiveData<ArrayList<String>> getNombres() {
+        return nombres;
     }
 
-    public static void getNombresList() {
+    public static void getNombresClientes() {
         // con el whereIn estamos cogiendo solo clientes
-        contactosRef.whereIn("vip", Arrays.asList(true, false)).get().addOnCompleteListener(task -> {
+//        contactosRef.whereIn("vip", Arrays.asList(true, false)).get().addOnCompleteListener(task -> {
+            contactosRef.orderBy("vip").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                Map<String, Object> mapaContactos = new HashMap<>();
-                //TODO: revisar lo de la clase
+                ArrayList<String> listaNombres = new ArrayList<>();
                 for (Cliente c : task.getResult().toObjects(Cliente.class)) {
-                    mapaContactos.put(c.getNombre(), c);
+                    listaNombres.add(c.getNombre());
                 }
-                lista.setValue(mapaContactos);
+                nombres.setValue(listaNombres);
+            }
+        });
+    }
+
+    public static void getNombresProveedores() {
+        // con el whereIn estamos cogiendo solo proveedores
+        contactosRef.orderBy("producto").get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                ArrayList<String> listaNombres = new ArrayList<>();
+                for (Proveedor c : task.getResult().toObjects(Proveedor.class)) {
+                    listaNombres.add(c.getNombre());
+                }
+                nombres.setValue(listaNombres);
             }
         });
     }

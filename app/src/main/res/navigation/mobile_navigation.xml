@@ -25,9 +25,9 @@
 
     <fragment
         android:id="@+id/nav_form"
-        android:name="com.example.nima.ui.formulario.Formulario"
+        android:name="com.example.nima.ui.listacontactos.FormularioCliente"
         android:label="@string/formulario"
-        tools:layout="@layout/fragment_formulario" />
+        tools:layout="@layout/fragment_formulario_cliente" />
 
     <fragment
         android:id="@+id/nav_lista_de_contactos"
@@ -35,4 +35,16 @@
         android:label="@string/lista_de_contactos"
         tools:layout="@layout/fragment_lista_contactos"
         />
+
+    <fragment
+        android:id="@+id/nav_formulario_cliente"
+        android:name="com.example.nima.ui.listacontactos.FormularioCliente"
+        android:label="@string/cliente"
+        tools:layout="@layout/fragment_formulario_cliente" />
+
+    <fragment
+        android:id="@+id/nav_formulario_proveedor"
+        android:name="com.example.nima.ui.listacontactos.FormularioProveedor"
+        android:label="@string/proveedor"
+        tools:layout="@layout/fragment_formulario_proveedor" />
 </navigation>

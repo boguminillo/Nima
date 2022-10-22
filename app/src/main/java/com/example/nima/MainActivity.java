@@ -1,7 +1,6 @@
 package com.example.nima;
 
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,9 +9,7 @@ import android.view.Menu;
 
 import com.example.nima.ui.calendario.CalendarActivity;
 
-import com.example.nima.ui.formulario.Formulario;
-import com.example.nima.ui.formularioProveedor.FormularioProveedor;
-import com.getbase.floatingactionbutton.FloatingActionButton;
+//import com.example.nima.ui.listacontactos.FormularioProveedor;
 import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import com.google.android.material.navigation.NavigationView;
@@ -61,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
         binding.appBarMain.btnProveedor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(getApplicationContext(), FormularioProveedor.class);
-                startActivity(i);
+//                Intent i = new Intent(getApplicationContext(), FormularioProveedor.class);
+//                startActivity(i);
             }
         });
 
@@ -73,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_form, R.id.nav_lista_de_contactos,R.id.nav_mapa)
+                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow, R.id.nav_form, R.id.nav_lista_de_contactos,R.id.nav_mapa, R.id.nav_formulario_cliente, R.id.nav_formulario_proveedor)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);

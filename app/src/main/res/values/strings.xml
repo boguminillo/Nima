@@ -31,5 +31,10 @@
     <string name="siguiente">SIGUIENTE</string>
     <string name="clientes">Clientes</string>
     <string name="proveedores">Proveedores</string>
+    <string name="producto">Producto</string>
+    <string name="guardar">Guardar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="cliente">Cliente</string>
+    <string name="proveedor">Proveedor</string>
 
 </resources>

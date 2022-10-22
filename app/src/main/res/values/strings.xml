@@ -29,5 +29,7 @@
     <string name="telefono">Telefono</string>
     <string name="email">Email</string>
     <string name="siguiente">SIGUIENTE</string>
+    <string name="clientes">Clientes</string>
+    <string name="proveedores">Proveedores</string>
 
 </resources>

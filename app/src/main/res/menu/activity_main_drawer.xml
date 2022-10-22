@@ -6,22 +6,17 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_home"
+            android:id="@+id/nav_calendario"
             android:icon="@drawable/ic_menu_camera"
-            android:title="@string/menu_home" />
+            android:title="@string/calendario" />
+        <item
+            android:id="@+id/nav_lista_de_eventos"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/lista_de_eventos" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_gallery" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
-        <item
-            android:id="@+id/nav_form"
-            android:icon="?attr/actionModePasteDrawable"
-            android:title="@string/formulario"
-            android:visible="true" />
         <item
             android:id="@+id/nav_lista_de_contactos"
             android:icon="?attr/actionModeShareDrawable"

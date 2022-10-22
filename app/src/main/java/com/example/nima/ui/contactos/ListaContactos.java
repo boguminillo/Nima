@@ -1,4 +1,4 @@
-package com.example.nima.ui.listacontactos;
+package com.example.nima.ui.contactos;
 
 import androidx.annotation.NonNull;
 
@@ -45,12 +45,12 @@ public class ListaContactos extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 String contacto = (String) parent.getItemAtPosition(position);
                 NavController navController = Navigation.findNavController(view);
+                ContactoViewModel.getContacto(contacto);
                 if (esCliente.get()) {
                     navController.navigate(R.id.nav_formulario_cliente);
                 } else {
                     navController.navigate(R.id.nav_formulario_proveedor);
                 }
-                ContactoViewModel.getContacto(contacto);
             }
         });
         // este observer se ejecuta cuando se actualiza la lista de nombres

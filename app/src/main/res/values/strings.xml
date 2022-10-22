@@ -36,5 +36,10 @@
     <string name="cancelar">Cancelar</string>
     <string name="cliente">Cliente</string>
     <string name="proveedor">Proveedor</string>
+    <string name="borrar">Borrar</string>
+    <string name="vip">VIP</string>
+    <string name="calendario">Calendario</string>
+    <string name="lista_de_eventos">Lista de eventos</string>
+    <string name="evento">Evento</string>
 
 </resources>

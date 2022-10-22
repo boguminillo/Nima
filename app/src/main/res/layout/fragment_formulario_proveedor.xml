@@ -1,15 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/layoutFormularioProveedor"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context=".ui.listacontactos.FormularioCliente">
+    tools:context=".ui.contactos.FormularioCliente">
 
     <TextView
-        android:id="@+id/tvTituloProveedor"
+        android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="40dp"
@@ -17,7 +16,7 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
     <EditText
-        android:id="@+id/idNombreProveedor"
+        android:id="@+id/idNombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -28,7 +27,7 @@
         android:minHeight="48dp" />
 
     <EditText
-        android:id="@+id/idEmailProveedor"
+        android:id="@+id/idEmail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -38,7 +37,7 @@
         android:minHeight="48dp" />
 
     <EditText
-        android:id="@+id/idTelefonoProveedor"
+        android:id="@+id/idTelefono"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -48,7 +47,7 @@
         android:minHeight="48dp" />
 
     <EditText
-        android:id="@+id/idDireccionProveedor"
+        android:id="@+id/idDireccion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -58,7 +57,7 @@
         android:minHeight="48dp" />
 
     <EditText
-        android:id="@+id/idProductoProveedor"
+        android:id="@+id/idProducto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
@@ -86,7 +85,16 @@
             android:layout_weight="1"  />
 
         <Button
-            android:id="@+id/btnGuardarProveedor"
+            android:id="@+id/btnBorrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?colorError"
+            android:text="@string/borrar"
+            android:layout_weight="1"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/btnGuardar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="?colorPrimary"

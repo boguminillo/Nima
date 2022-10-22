@@ -61,14 +61,6 @@
             />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btn_even"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fabSize="mini"
-            app:fab_addButtonColorNormal="@color/design_default_color_primary_dark"
-            app:fab_icon="?attr/actionModePasteDrawable" />
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_cliente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -77,6 +69,14 @@
             app:fab_icon="?attr/actionModeSelectAllDrawable"
 
             />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/btn_even"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fabSize="mini"
+            app:fab_addButtonColorNormal="@color/design_default_color_primary_dark"
+            app:fab_icon="?attr/actionModePasteDrawable" />
 
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>

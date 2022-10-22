@@ -1,4 +1,4 @@
-package com.example.nima.ui.listacontactos;
+package com.example.nima.ui.contactos;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -10,10 +10,8 @@ import com.example.nima.data.model.Proveedor;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class ContactoViewModel extends ViewModel {
 
@@ -38,8 +36,7 @@ public class ContactoViewModel extends ViewModel {
      * Obtiene la lista de nombres de los clientes
      */
     public static void getNombresClientes() {
-        // con el whereIn estamos cogiendo solo clientes
-//        contactosRef.whereIn("vip", Arrays.asList(true, false)).get().addOnCompleteListener(task -> {
+        // ordenando por un atributo que solo tienen los clientes conseguimos que solo nos devuelva los clientes
         contactosRef.orderBy("vip").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 ArrayList<String> listaNombres = new ArrayList<>();
@@ -56,7 +53,7 @@ public class ContactoViewModel extends ViewModel {
      * Obtiene la lista de nombres de los proveedores
      */
     public static void getNombresProveedores() {
-        // con el whereIn estamos cogiendo solo proveedores
+        // ordenando por un atributo que solo tienen los proveedores conseguimos que solo nos devuelva los proveedores
         contactosRef.orderBy("producto").get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 ArrayList<String> listaNombres = new ArrayList<>();
@@ -88,18 +85,27 @@ public class ContactoViewModel extends ViewModel {
     }
 
     /**
-     * Este método se encarga de vaciar el contacto de la cache
-     */
-    public static void vaciarContacto() {
-        contacto.setValue(null);
-    }
-
-    /**
      * Este método se encarga de añadir un contacto a la base de datos o actualizarlo en caso de que ya exista
      *
      * @param contacto
      */
     public static void addUpdateContacto(Contacto contacto) {
         contactosRef.document(contacto.getNombre()).set(contacto);
+    }
+
+    /**
+     * Este método se encarga de eliminar un contacto de la base de datos
+     *
+     * @param nombre
+     */
+    public static void deleteContacto(String nombre) {
+        contactosRef.document(nombre).delete();
+    }
+
+    /**
+     * Este método se encarga de eliminar el contacto del viewModel
+     */
+    public static void flushContacto() {
+        contacto.setValue(null);
     }
 }

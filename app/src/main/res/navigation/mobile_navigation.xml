@@ -41,4 +41,8 @@
         android:label="@string/proveedor"
         tools:layout="@layout/fragment_formulario_proveedor" />
 
+    <fragment
+        android:id="@+id/nav_opciones"
+        android:name="com.example.nima.ui.SettingsFragment" />
+
 </navigation>

@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_calendario, R.id.nav_gallery, R.id.nav_lista_de_eventos, R.id.nav_formulario_evento, R.id.nav_lista_de_contactos, R.id.nav_formulario_cliente, R.id.nav_formulario_proveedor, R.id.nav_mapa)
+                R.id.nav_calendario, R.id.nav_gallery, R.id.nav_lista_de_eventos, R.id.nav_formulario_evento, R.id.nav_lista_de_contactos, R.id.nav_formulario_cliente, R.id.nav_formulario_proveedor, R.id.nav_mapa, R.id.nav_opciones)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -85,10 +85,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_settings:
-                getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.nav_host_fragment_content_main, new SettingsFragment())
-                        .addToBackStack(null)
-                        .commit();
+                NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
+                navController.navigate(R.id.nav_opciones);
                 return true;
             case R.id.action_logout:
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);

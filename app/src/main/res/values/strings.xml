@@ -51,5 +51,6 @@
     <string name="logout">Logout</string>
     <string name="logo_nima">Logo Nima</string>
     <string name="guardar_sesion">Guardar sesion</string>
+    <string name="recuperar_contrase_a">Recuperar contraseña</string>
 
 </resources>

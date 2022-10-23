@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.StringRes;
@@ -21,6 +22,7 @@ import androidx.preference.PreferenceManager;
 import com.example.nima.MainActivity;
 import com.example.nima.R;
 import com.example.nima.databinding.ActivityLoginBinding;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -39,6 +41,7 @@ public class LoginActivity extends AppCompatActivity {
         final EditText usernameEditText = binding.username;
         final EditText passwordEditText = binding.password;
         final CheckBox rememberMe = binding.chkRecordar;
+        final TextView recuperarPass = binding.tvRecuperarPass;
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
 
@@ -99,6 +102,23 @@ public class LoginActivity extends AppCompatActivity {
                         passwordEditText.getText().toString());
             }
             return false;
+        });
+
+        assert recuperarPass != null;
+        recuperarPass.setOnClickListener(v -> {
+            String mail = usernameEditText.getText().toString();
+            if (mail.isEmpty()) {
+                Toast.makeText(LoginActivity.this, "No se ha podido enviar el correo, compruebe la direccion", Toast.LENGTH_SHORT).show();
+            } else {
+                FirebaseAuth.getInstance().sendPasswordResetEmail(mail)
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(LoginActivity.this, "Se ha enviado un correo para recuperar la contraseña", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(LoginActivity.this, "No se ha podido enviar el correo, compruebe la direccion", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            }
         });
 
         loginButton.setOnClickListener(v -> {

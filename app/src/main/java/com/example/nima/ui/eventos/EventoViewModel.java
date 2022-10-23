@@ -4,23 +4,24 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.nima.data.model.Cliente;
 import com.example.nima.data.model.Evento;
-import com.example.nima.data.model.Proveedor;
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class EventoViewModel extends ViewModel {
 
-    private static CollectionReference eventosRef = FirebaseFirestore.getInstance().collection("eventos");
-    private static MutableLiveData<ArrayList<String>> nombres = new MutableLiveData<>();
-    private static MutableLiveData<Evento> evento = new MutableLiveData<>();
+    private static final CollectionReference eventosRef = FirebaseFirestore.getInstance().collection("eventos");
+    private static final MutableLiveData<ArrayList<Evento>> listaEventos = new MutableLiveData<>();
+    private static final MutableLiveData<Evento> evento = new MutableLiveData<>();
 
-    LiveData<ArrayList<String>> getNombres() {
-        return nombres;
+    // TODO: guardar esto en shared preferences
+    public static final SimpleDateFormat FORMATO_FECHA = new SimpleDateFormat("dd-MM-yyyy");
+
+    LiveData<ArrayList<Evento>> getLista() {
+        return listaEventos;
     }
 
     LiveData<Evento> getEvento() {
@@ -28,39 +29,32 @@ public class EventoViewModel extends ViewModel {
     }
 
     /**
-     * Obtiene la lista de nombres de los eventos
+     * Obtiene la lista de los eventos
      */
-    public static void getNombresEventos() {
+    public static void getEventos() {
         // ordenando por un atributo que solo tienen los clientes conseguimos que solo nos devuelva los clientes
         eventosRef.get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
-                ArrayList<String> listaNombres = new ArrayList<>();
-                for (Evento e : task.getResult().toObjects(Evento.class)) {
-                    listaNombres.add(e.getNombre());
-                }
-                nombres.setValue(listaNombres);
+                ArrayList<Evento> eventos = new ArrayList<>(task.getResult().toObjects(Evento.class));
+                eventos.sort(Evento::compareTo);
+                listaEventos.setValue(eventos);
             }
         });
     }
 
     /**
-     * Este método se encarga de recoger la informacion de un evento de la base de datos
+     * Este método se encarga de guardar la informacion del evento seleccionado
      *
-     * @param nombre nombre del evento
+     * @param e el evento seleccionado
      */
-    public static void getEvento(String nombre) {
-        eventosRef.document(nombre).get().addOnCompleteListener(task -> {
-            if (task.isSuccessful()) {
-                DocumentSnapshot doc = task.getResult();
-                evento.setValue(doc.toObject(Evento.class));
-            }
-        });
+    public static void setEvento(Evento e) {
+        evento.setValue(e);
     }
 
     /**
      * Este método se encarga de añadir un evento a la base de datos o actualizarlo en caso de que ya exista
      *
-     * @param evento
+     * @param evento evento a añadir
      */
     public static void addUpdateEvento(Evento evento) {
         eventosRef.document(evento.getNombre()).set(evento);
@@ -69,7 +63,7 @@ public class EventoViewModel extends ViewModel {
     /**
      * Este método se encarga de eliminar un evento de la base de datos
      *
-     * @param nombre
+     * @param nombre nombre del evento a eliminar
      */
     public static void deleteEvento(String nombre) {
         eventosRef.document(nombre).delete();

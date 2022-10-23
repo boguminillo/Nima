@@ -41,5 +41,8 @@
     <string name="calendario">Calendario</string>
     <string name="lista_de_eventos">Lista de eventos</string>
     <string name="evento">Evento</string>
+    <string name="descripcion">Descripcion</string>
+    <string name="fecha">Fecha</string>
+    <string name="selecciona_fecha">Selecciona Fecha</string>
 
 </resources>

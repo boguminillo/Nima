@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:autofillHints=""
+        android:autofillHints="name"
         android:ems="10"
         android:hint="@string/nombre"
         android:inputType="textPersonName"
@@ -31,6 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:autofillHints="emailAddress"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
@@ -41,6 +42,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:autofillHints="phone"
         android:ems="10"
         android:hint="@string/telefono"
         android:inputType="phone"
@@ -51,6 +53,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
+        android:autofillHints="postalAddress"
         android:ems="10"
         android:hint="@string/direccion"
         android:inputType="textPostalAddress"
@@ -80,7 +83,8 @@
             android:layout_height="wrap_content"
             android:background="?colorPrimary"
             android:text="@string/cancelar"
-            android:layout_weight="1"  />
+            android:layout_weight="1"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnBorrar"
@@ -89,7 +93,8 @@
             android:background="?colorError"
             android:text="@string/borrar"
             android:layout_weight="1"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnGuardar"
@@ -97,7 +102,8 @@
             android:layout_height="wrap_content"
             android:background="?colorPrimary"
             android:text="@string/guardar"
-            android:layout_weight="1"  />
+            android:layout_weight="1"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 
 </LinearLayout>

@@ -1,20 +1,22 @@
 package com.example.nima.data.model;
 
 import com.google.firebase.firestore.DocumentId;
-import com.google.type.DateTime;
+import java.util.Date;
 
 public class Evento {
 
     @DocumentId
     private String nombre;
     private String direccion;
-    private DateTime fecha;
+    private String descripcion;
+    private Date fecha;
 
     public Evento() { }
 
-    public Evento(String nombre, String direccion, DateTime fecha) {
+    public Evento(String nombre, String direccion, String descripcion, Date fecha) {
         this.nombre = nombre;
         this.direccion = direccion;
+        this.descripcion = descripcion;
         this.fecha = fecha;
     }
 
@@ -34,12 +36,24 @@ public class Evento {
         this.direccion = direccion;
     }
 
-    public DateTime getFecha() {
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public Date getFecha() {
         return fecha;
     }
 
-    public void setFecha(DateTime fecha) {
+    public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public int compareTo(Evento e) {
+        return this.getFecha().compareTo(e.getFecha());
     }
 
 }

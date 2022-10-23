@@ -5,11 +5,6 @@ public class Proveedor extends Contacto {
 
     public Proveedor() {}
 
-    public Proveedor(String nombre, String direccion, String telefono, String email,String producto) {
-        super(nombre, direccion, telefono, email);
-        this.producto=producto;
-    }
-
     public String getProducto() {
         return producto;
     }

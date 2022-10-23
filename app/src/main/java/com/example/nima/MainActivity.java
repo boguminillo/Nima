@@ -1,6 +1,7 @@
 package com.example.nima;
 
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -17,7 +18,6 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.preference.PreferenceManager;
 
 import com.example.nima.databinding.ActivityMainBinding;
-import com.example.nima.ui.SettingsFragment;
 import com.example.nima.ui.contactos.ContactoViewModel;
 import com.example.nima.ui.eventos.EventoViewModel;
 import com.example.nima.ui.login.LoginActivity;
@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 || super.onSupportNavigateUp();
     }
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {

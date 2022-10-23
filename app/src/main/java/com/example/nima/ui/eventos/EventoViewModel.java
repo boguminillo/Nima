@@ -1,19 +1,13 @@
 package com.example.nima.ui.eventos;
 
-import android.content.ContentProvider;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.preference.PreferenceManager;
 
-import com.example.nima.R;
 import com.example.nima.data.model.Evento;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.protobuf.SourceContext;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class EventoViewModel extends ViewModel {

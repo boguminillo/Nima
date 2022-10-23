@@ -5,11 +5,6 @@ public class Cliente extends Contacto {
 
     public Cliente() {}
 
-    public Cliente(String nombre, String direccion, String telefono, String email,boolean vip) {
-        super(nombre, direccion, telefono, email);
-        this.vip=vip;
-    }
-
     public boolean isVip() {
         return vip;
     }

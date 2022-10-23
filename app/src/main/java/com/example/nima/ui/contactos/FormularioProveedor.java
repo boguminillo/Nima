@@ -21,7 +21,6 @@ public class FormularioProveedor extends Fragment {
     // esta variable se utilizara para comprobar si se ha editado el nombre
     String nombreOriginal = "";
 
-    ////Este metodo muestra la pantalla del fragmento formulario
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {

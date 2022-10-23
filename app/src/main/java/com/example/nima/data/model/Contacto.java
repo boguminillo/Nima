@@ -12,13 +12,6 @@ public abstract class Contacto {
 
     public Contacto() {}
 
-    public Contacto(String nombre, String direccion, String telefono, String email) {
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.telefono = telefono;
-        this.email = email;
-    }
-
     public String getNombre() {
         return nombre;
     }

@@ -13,13 +13,6 @@ public class Evento {
 
     public Evento() { }
 
-    public Evento(String nombre, String direccion, String descripcion, Date fecha) {
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.descripcion = descripcion;
-        this.fecha = fecha;
-    }
-
     public String getNombre() {
         return nombre;
     }

@@ -21,12 +21,6 @@ import javax.annotation.Nullable;
 
 public class FormularioCliente extends Fragment {
 
-    private ContactoViewModel mViewModel;
-
-    public static FormularioCliente newInstance() {
-        return new FormularioCliente();
-    }
-
     private FragmentFormularioClienteBinding binding;
     // esta variable se utilizara para comprobar si se ha editado el nombre
     String nombreOriginal = "";
@@ -37,7 +31,7 @@ public class FormularioCliente extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentFormularioClienteBinding.inflate(inflater, container, false);
         View vista = binding.getRoot();
-        mViewModel = new ViewModelProvider(this).get(ContactoViewModel.class);
+        ContactoViewModel mViewModel = new ViewModelProvider(this).get(ContactoViewModel.class);
         // observador que cargara los datos del cliente si es que se ha seleccionado uno
         mViewModel.getContacto().observe(getViewLifecycleOwner(), contacto -> {
             // la comprobacion es necesaria porque en ocasiones al volver atras dese otro formulario el contacto era un proveedor
@@ -62,20 +56,18 @@ public class FormularioCliente extends Fragment {
             cliente.setVip(binding.chkVip.isChecked());
             ContactoViewModel.addUpdateContacto(cliente);
             // si se ha editado el nombre se elimina el contacto con el nombre original
-            if (!nombreOriginal.equals(cliente.getNombre())) {
+            if (!nombreOriginal.equals("") && !nombreOriginal.equals(cliente.getNombre())) {
                 ContactoViewModel.deleteContacto(nombreOriginal);
             }
-            getActivity().onBackPressed();
+            requireActivity().onBackPressed();
         });
         // funcion del boton de borrar
         binding.btnBorrar.setOnClickListener(v -> {
             ContactoViewModel.deleteContacto(nombreOriginal);
-            getActivity().onBackPressed();
+            requireActivity().onBackPressed();
         });
         // funcion del boton de cancelar
-        binding.btnCancelar.setOnClickListener(v -> {
-            getActivity().onBackPressed();
-        });
+        binding.btnCancelar.setOnClickListener(v -> requireActivity().onBackPressed());
         return vista;
     }
 }

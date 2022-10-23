@@ -15,10 +15,10 @@ import java.util.ArrayList;
 
 public class ContactoViewModel extends ViewModel {
 
-    private static CollectionReference contactosRef = FirebaseFirestore.getInstance().collection("contactos");
-    private static MutableLiveData<ArrayList<String>> nombres = new MutableLiveData<>();
-    private static MutableLiveData<Contacto> contacto = new MutableLiveData<>();
-    private static MutableLiveData<Boolean> cliente = new MutableLiveData<>();
+    private static final CollectionReference contactosRef = FirebaseFirestore.getInstance().collection("contactos");
+    private static final MutableLiveData<ArrayList<String>> nombres = new MutableLiveData<>();
+    private static final MutableLiveData<Contacto> contacto = new MutableLiveData<>();
+    private static final MutableLiveData<Boolean> cliente = new MutableLiveData<>();
 
     LiveData<ArrayList<String>> getNombres() {
         return nombres;
@@ -43,6 +43,7 @@ public class ContactoViewModel extends ViewModel {
                 for (Cliente c : task.getResult().toObjects(Cliente.class)) {
                     listaNombres.add(c.getNombre());
                 }
+                listaNombres.sort(String::compareTo);
                 nombres.setValue(listaNombres);
                 cliente.setValue(true);
             }
@@ -60,6 +61,7 @@ public class ContactoViewModel extends ViewModel {
                 for (Proveedor c : task.getResult().toObjects(Proveedor.class)) {
                     listaNombres.add(c.getNombre());
                 }
+                listaNombres.sort(String::compareTo);
                 nombres.setValue(listaNombres);
                 cliente.setValue(false);
             }
@@ -87,7 +89,7 @@ public class ContactoViewModel extends ViewModel {
     /**
      * Este método se encarga de añadir un contacto a la base de datos o actualizarlo en caso de que ya exista
      *
-     * @param contacto
+     * @param contacto el contacto a añadir o actualizar
      */
     public static void addUpdateContacto(Contacto contacto) {
         contactosRef.document(contacto.getNombre()).set(contacto);
@@ -96,7 +98,7 @@ public class ContactoViewModel extends ViewModel {
     /**
      * Este método se encarga de eliminar un contacto de la base de datos
      *
-     * @param nombre
+     * @param nombre nombre del contacto a eliminar
      */
     public static void deleteContacto(String nombre) {
         contactosRef.document(nombre).delete();

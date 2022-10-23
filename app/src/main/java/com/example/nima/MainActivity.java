@@ -47,14 +47,17 @@ public class MainActivity extends AppCompatActivity {
         binding.appBarMain.btnEven.setOnClickListener(view -> {
             EventoViewModel.flushEvento();
             navController.navigate(R.id.nav_formulario_evento);
+            binding.appBarMain.btnMenu.collapse();
         });
         binding.appBarMain.btnCliente.setOnClickListener(view -> {
             ContactoViewModel.flushContacto();
             navController.navigate(R.id.nav_formulario_cliente);
+            binding.appBarMain.btnMenu.collapse();
         });
         binding.appBarMain.btnProveedor.setOnClickListener(view -> {
             ContactoViewModel.flushContacto();
             navController.navigate(R.id.nav_formulario_proveedor);
+            binding.appBarMain.btnMenu.collapse();
         });
     }
 

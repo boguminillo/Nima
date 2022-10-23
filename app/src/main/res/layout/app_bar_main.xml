@@ -39,44 +39,34 @@
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/btn_menu"
-        android:layout_width="64dp"
-        android:layout_height="316dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="70dp"
+        app:fab_labelStyle="@style/menu_labels_style"
+        app:fab_labelsPosition="left"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_proveedor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-
-            android:layout_marginBottom="-8dp"
-            app:fabSize="mini"
-            app:fab_addButtonColorNormal="@color/design_default_color_primary"
-            app:fab_addButtonColorPressed="@color/design_default_color_primary"
-
-            />
+            app:fab_icon="@drawable/baseline_account_circle_24"
+            app:fab_title="Proveedor" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_cliente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabSize="mini"
-            app:fab_addButtonColorNormal="@color/design_default_color_primary_dark"
-            app:fab_icon="?attr/actionModeSelectAllDrawable"
-
-            />
+            app:fab_icon="@drawable/baseline_account_circle_24"
+            app:fab_title="Cliente" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_even"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fabSize="mini"
-            app:fab_addButtonColorNormal="@color/design_default_color_primary_dark"
-            app:fab_icon="?attr/actionModePasteDrawable" />
+            app:fab_icon="@drawable/baseline_event_24"
+            app:fab_title="Evento" />
 
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>

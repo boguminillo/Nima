@@ -1,5 +1,6 @@
 package com.example.nima.ui.eventos;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.preference.PreferenceManager;
 
 import com.example.nima.R;
 import com.example.nima.data.model.Evento;
@@ -48,7 +50,8 @@ public class ListaEventos extends Fragment {
                     TextView text2 = view.findViewById(android.R.id.text2);
 
                     //formato que utilizaremos para mostrar la fecha
-                    SimpleDateFormat formato = EventoViewModel.FORMATO_FECHA;
+                    String formatoFecha = PreferenceManager.getDefaultSharedPreferences(getContext()).getString(getResources().getString(R.string.formato_fechas), "dd/MM/yyyy");
+                    @SuppressLint("SimpleDateFormat") SimpleDateFormat formato = new SimpleDateFormat(formatoFecha);
                     text1.setText(eventos.get(position).getNombre());
                     text2.setText(formato.format(eventos.get(position).getFecha()));
                     return view;

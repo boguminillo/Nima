@@ -1,18 +1,19 @@
 package com.example.nima.ui.eventos;
 
-import androidx.lifecycle.ViewModelProvider;
-
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.preference.PreferenceManager;
+
+import com.example.nima.R;
 import com.example.nima.data.model.Evento;
 import com.example.nima.databinding.FragmentFormularioEventoBinding;
 
@@ -32,7 +33,8 @@ public class FormularioEvento extends Fragment {
         View vista = binding.getRoot();
         EventoViewModel mViewModel = new ViewModelProvider(this).get(EventoViewModel.class);
         //formato que utilizaremos para mostrar la fecha
-        SimpleDateFormat formato = EventoViewModel.FORMATO_FECHA;
+        String formatoFecha = PreferenceManager.getDefaultSharedPreferences(requireContext()).getString(getResources().getString(R.string.formato_fechas), "dd/MM/yyyy");
+        @SuppressLint("SimpleDateFormat") SimpleDateFormat formato = new SimpleDateFormat(formatoFecha);
         // observador que cargara los datos del cliente si es que se ha seleccionado uno
         mViewModel.getEvento().observe(getViewLifecycleOwner(), evento -> {
             if (evento != null) {

@@ -1,6 +1,7 @@
 package com.example.nima;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.preference.PreferenceManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -19,16 +20,22 @@ public class SplashScreen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        TimerTask tarea= new TimerTask(){
+        TimerTask tarea = new TimerTask() {
             @Override
-            public void run(){
-                Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
+            public void run() {
+                boolean inicioAutomatico = PreferenceManager.getDefaultSharedPreferences(getApplicationContext()).getBoolean(getResources().getString(R.string.auto_login), false);
+                Intent intent;
+                if (inicioAutomatico) {
+                    intent = new Intent(SplashScreen.this, MainActivity.class);
+                } else {
+                    intent = new Intent(SplashScreen.this, LoginActivity.class);
+                }
                 startActivity(intent);
                 finish();
             }
         };
-        Timer tiempo=new Timer();
-        tiempo.schedule(tarea,3000);
+        Timer tiempo = new Timer();
+        tiempo.schedule(tarea, 3000);
 
 
     }

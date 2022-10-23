@@ -44,5 +44,12 @@
     <string name="descripcion">Descripcion</string>
     <string name="fecha">Fecha</string>
     <string name="selecciona_fecha">Selecciona Fecha</string>
+    <!-- Preference Titles -->
+    <string name="tema_oscuro">temaOscuro</string>
+    <string name="auto_login">autoLogin</string>
+    <string name="formato_fechas">formatoFechas</string>
+    <string name="logout">Logout</string>
+    <string name="logo_nima">Logo Nima</string>
+    <string name="guardar_sesion">Guardar sesion</string>
 
 </resources>

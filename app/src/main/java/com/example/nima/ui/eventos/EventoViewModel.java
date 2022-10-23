@@ -1,12 +1,17 @@
 package com.example.nima.ui.eventos;
 
+import android.content.ContentProvider;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+import androidx.preference.PreferenceManager;
 
+import com.example.nima.R;
 import com.example.nima.data.model.Evento;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.protobuf.SourceContext;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -16,9 +21,6 @@ public class EventoViewModel extends ViewModel {
     private static final CollectionReference eventosRef = FirebaseFirestore.getInstance().collection("eventos");
     private static final MutableLiveData<ArrayList<Evento>> listaEventos = new MutableLiveData<>();
     private static final MutableLiveData<Evento> evento = new MutableLiveData<>();
-
-    // TODO: guardar esto en shared preferences
-    public static final SimpleDateFormat FORMATO_FECHA = new SimpleDateFormat("dd-MM-yyyy");
 
     LiveData<ArrayList<Evento>> getLista() {
         return listaEventos;

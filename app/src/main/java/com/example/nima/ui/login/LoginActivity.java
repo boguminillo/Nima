@@ -1,25 +1,25 @@
 package com.example.nima.ui.login;
 
 import android.app.Activity;
-
-import androidx.lifecycle.ViewModelProvider;
-
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.StringRes;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import androidx.annotation.StringRes;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.preference.PreferenceManager;
+
 import com.example.nima.MainActivity;
+import com.example.nima.R;
 import com.example.nima.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {
@@ -38,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
 
         final EditText usernameEditText = binding.username;
         final EditText passwordEditText = binding.password;
+        final CheckBox rememberMe = binding.chkRecordar;
         final Button loginButton = binding.login;
         final ProgressBar loadingProgressBar = binding.loading;
 
@@ -65,7 +66,9 @@ public class LoginActivity extends AppCompatActivity {
             if (loginResult.getSuccess() != null) {
                 updateUiWithUser(loginResult.getSuccess());
                 setResult(Activity.RESULT_OK);
-
+                // guardamos la sesion si el usuario quiere
+                assert rememberMe != null;
+                PreferenceManager.getDefaultSharedPreferences(this).edit().putBoolean(getResources().getString(R.string.auto_login), rememberMe.isChecked()).apply();
                 //Complete and destroy login activity once successful
                 finish();
             }

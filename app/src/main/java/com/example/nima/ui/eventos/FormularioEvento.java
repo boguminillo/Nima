@@ -17,6 +17,7 @@ import com.example.nima.R;
 import com.example.nima.data.model.Evento;
 import com.example.nima.databinding.FragmentFormularioEventoBinding;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -50,9 +51,16 @@ public class FormularioEvento extends Fragment {
         binding.idFecha.setOnClickListener(v -> {
             DatePickerDialog datePickerDialog = new DatePickerDialog(getContext());
             datePickerDialog.setOnDateSetListener((view, year, month, dayOfMonth) -> {
-                // es necesario restar 1900 porque las fechas empiezan a contar en ese año
-                Date fecha = new Date(year - 1900, month, dayOfMonth);
-                binding.idFecha.setText(formato.format(fecha));
+                // Para no utilizar el constructor deprecado utilizamos un formateador, no podemos utilizar el creado anteriormente porque no sabremos el formato que tiene
+                @SuppressLint("SimpleDateFormat") SimpleDateFormat formatoBarra = new SimpleDateFormat("dd/MM/yyyy");
+                Date fecha;
+                try {
+                    fecha = formatoBarra.parse(dayOfMonth + "/" + (month + 1) + "/" + year);
+                    assert fecha != null;
+                    binding.idFecha.setText(formato.format(fecha));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             });
             datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
             datePickerDialog.show();

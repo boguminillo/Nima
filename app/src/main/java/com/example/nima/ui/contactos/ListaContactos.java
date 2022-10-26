@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -52,6 +53,13 @@ public class ListaContactos extends Fragment {
         });
         // este observer se ejecuta cuando se cambia de cliente a proveedor o viceversa
         mViewModel.isCliente().observe(getViewLifecycleOwner(), esCliente::set);
+        // observador para comprobar el resultado de la operacion de guardar o actualizar
+        mViewModel.getResultado().observe(getViewLifecycleOwner(), resultado -> {
+            if (resultado !=null) {
+                Toast.makeText(getContext(), resultado, Toast.LENGTH_SHORT).show();
+                ContactoViewModel.flushResultado();
+            }
+        });
         // botones para cambiar de lista
         Button btnClienes = vista.findViewById(R.id.bntClientes);
         btnClienes.setOnClickListener(v -> ContactoViewModel.getNombresClientes());

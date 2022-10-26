@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 import com.example.nima.data.model.Cliente;
@@ -53,10 +54,11 @@ public class FormularioCliente extends Fragment {
             cliente.setTelefono(binding.idTelefono.getText().toString());
             cliente.setDireccion(binding.idDireccion.getText().toString());
             cliente.setVip(binding.chkVip.isChecked());
-            ContactoViewModel.addUpdateContacto(cliente);
-            // si se ha editado el nombre se elimina el contacto con el nombre original
-            if (!nombreOriginal.equals("") && !nombreOriginal.equals(cliente.getNombre())) {
-                ContactoViewModel.deleteContacto(nombreOriginal);
+            // creamos el cliente si se esta creando uno nuevo o lo actualizamos si se esta editando
+            if (nombreOriginal.equals("")) {
+                ContactoViewModel.addContacto(cliente);
+            } else {
+                ContactoViewModel.updateContacto(cliente, !nombreOriginal.equals(cliente.getNombre()));
             }
             requireActivity().onBackPressed();
         });

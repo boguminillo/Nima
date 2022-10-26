@@ -4,8 +4,10 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.nima.data.model.Contacto;
 import com.example.nima.data.model.Evento;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
@@ -16,6 +18,7 @@ public class EventoViewModel extends ViewModel {
     private static final CollectionReference eventosRef = FirebaseFirestore.getInstance().collection("eventos");
     private static final MutableLiveData<ArrayList<Evento>> listaEventos = new MutableLiveData<>();
     private static final MutableLiveData<Evento> evento = new MutableLiveData<>();
+    private static final MutableLiveData<String> resultado = new MutableLiveData<>();
 
     LiveData<ArrayList<Evento>> getLista() {
         return listaEventos;
@@ -23,6 +26,10 @@ public class EventoViewModel extends ViewModel {
 
     LiveData<Evento> getEvento() {
         return evento;
+    }
+
+    LiveData<String> getResultado() {
+        return resultado;
     }
 
     /**
@@ -63,12 +70,49 @@ public class EventoViewModel extends ViewModel {
     }
 
     /**
-     * Este método se encarga de añadir un evento a la base de datos o actualizarlo en caso de que ya exista
+     * Este método se encarga de añadir un evento a la base de datos
      *
      * @param evento evento a añadir
      */
-    public static void addUpdateEvento(Evento evento) {
-        eventosRef.document(evento.getNombre()).set(evento);
+    public static void addEvento(Evento evento) {
+        eventosRef.document(evento.getNombre()).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot doc = task.getResult();
+                // si el contacto ya existe no se añade
+                if (doc.exists()) {
+                    resultado.setValue("El contacto ya existe");
+                    return;
+                }
+                eventosRef.document(evento.getNombre()).set(evento);
+                resultado.setValue("Contacto añadido");
+            }
+        });
+    }
+
+    /**
+     * Este método se encarga de actualizar un evento de la base de datos
+     *
+     * @param evento     el evento a actualizar
+     * @param cambioNombre si se ha cambiado el nombre del evento
+     */
+    public static void updateEvento(Evento evento, boolean cambioNombre) {
+        if (cambioNombre) {
+            eventosRef.document(evento.getNombre()).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot doc = task.getResult();
+                    // si el contacto con el nombre nuevo ya existe no se añade
+                    if (doc.exists()) {
+                        resultado.setValue("Ya existe un contacto con ese nombre");
+                    } else {
+                        eventosRef.document(evento.getNombre()).set(evento);
+                        resultado.setValue("Contacto actualizado");
+                    }
+                }
+            });
+        } else {
+            eventosRef.document(evento.getNombre()).set(evento);
+            resultado.setValue("Contacto actualizado");
+        }
     }
 
     /**

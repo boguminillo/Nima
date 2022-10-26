@@ -16,6 +16,7 @@ import androidx.preference.PreferenceManager;
 import com.example.nima.R;
 import com.example.nima.data.model.Evento;
 import com.example.nima.databinding.FragmentFormularioEventoBinding;
+import com.example.nima.ui.contactos.ContactoViewModel;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -73,10 +74,11 @@ public class FormularioEvento extends Fragment {
             evento.setFecha(fecha);
             evento.setDireccion(binding.idDireccion.getText().toString());
             evento.setDescripcion(binding.idDescripcion.getText().toString());
-            EventoViewModel.addUpdateEvento(evento);
-            // si se ha editado el nombre se elimina el contacto con el nombre original
-            if (!nombreOriginal.equals("") && !nombreOriginal.equals(evento.getNombre())) {
-                EventoViewModel.deleteEvento(nombreOriginal);
+            // creamos el evento si se esta creando uno nuevo o lo actualizamos si se esta editando
+            if (nombreOriginal.equals("")) {
+                EventoViewModel.addEvento(evento);
+            } else {
+                EventoViewModel.updateEvento(evento, !nombreOriginal.equals(evento.getNombre()));
             }
             requireActivity().onBackPressed();
         });

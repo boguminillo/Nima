@@ -19,6 +19,7 @@ public class ContactoViewModel extends ViewModel {
     private static final MutableLiveData<ArrayList<String>> nombres = new MutableLiveData<>();
     private static final MutableLiveData<Contacto> contacto = new MutableLiveData<>();
     private static final MutableLiveData<Boolean> cliente = new MutableLiveData<>();
+    private static final MutableLiveData<String> resultado = new MutableLiveData<>();
 
     LiveData<ArrayList<String>> getNombres() {
         return nombres;
@@ -30,6 +31,10 @@ public class ContactoViewModel extends ViewModel {
 
     LiveData<Boolean> isCliente() {
         return cliente;
+    }
+
+    LiveData<String> getResultado() {
+        return resultado;
     }
 
     /**
@@ -87,12 +92,49 @@ public class ContactoViewModel extends ViewModel {
     }
 
     /**
-     * Este método se encarga de añadir un contacto a la base de datos o actualizarlo en caso de que ya exista
+     * Este método se encarga de añadir un contacto a la base de datos
      *
-     * @param contacto el contacto a añadir o actualizar
+     * @param contacto el contacto a añadir
      */
-    public static void addUpdateContacto(Contacto contacto) {
-        contactosRef.document(contacto.getNombre()).set(contacto);
+    public static void addContacto(Contacto contacto) {
+        contactosRef.document(contacto.getNombre()).get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                DocumentSnapshot doc = task.getResult();
+                // si el contacto ya existe no se añade
+                if (doc.exists()) {
+                    resultado.setValue("El contacto ya existe");
+                    return;
+                }
+                contactosRef.document(contacto.getNombre()).set(contacto);
+                resultado.setValue("Contacto añadido");
+            }
+        });
+    }
+
+    /**
+     * Este método se encarga de actualizar un contacto de la base de datos
+     *
+     * @param contacto     el contacto a actualizar
+     * @param cambioNombre si se ha cambiado el nombre del contacto
+     */
+    public static void updateContacto(Contacto contacto, boolean cambioNombre) {
+        if (cambioNombre) {
+            contactosRef.document(contacto.getNombre()).get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot doc = task.getResult();
+                    // si el contacto con el nombre nuevo ya existe no se añade
+                    if (doc.exists()) {
+                        resultado.setValue("Ya existe un contacto con ese nombre");
+                    } else {
+                        contactosRef.document(contacto.getNombre()).set(contacto);
+                        resultado.setValue("Contacto actualizado");
+                    }
+                }
+            });
+        } else {
+            contactosRef.document(contacto.getNombre()).set(contacto);
+            resultado.setValue("Contacto actualizado");
+        }
     }
 
     /**
@@ -109,5 +151,12 @@ public class ContactoViewModel extends ViewModel {
      */
     public static void flushContacto() {
         contacto.setValue(null);
+    }
+
+    /**
+     * Este método se encarga de eliminar el resultado del viewModel
+     */
+    public static void flushResultado() {
+        resultado.setValue(null);
     }
 }

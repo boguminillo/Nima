@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -49,10 +50,11 @@ public class FormularioProveedor extends Fragment {
             proveedor.setTelefono(binding.idTelefono.getText().toString());
             proveedor.setDireccion(binding.idDireccion.getText().toString());
             proveedor.setProducto(binding.idProducto.getText().toString());
-            ContactoViewModel.addUpdateContacto(proveedor);
-            // si el nombre ha sido editado se elimina el contacto con el nombre original
-            if (!nombreOriginal.equals("") && !nombreOriginal.equals(proveedor.getNombre())) {
-                ContactoViewModel.deleteContacto(nombreOriginal);
+            // creamos el proveedor si se esta creando uno nuevo o lo actualizamos si se esta editando
+            if (nombreOriginal.equals("")) {
+                ContactoViewModel.addContacto(proveedor);
+            } else {
+                ContactoViewModel.updateContacto(proveedor, !nombreOriginal.equals(proveedor.getNombre()));
             }
             requireActivity().onBackPressed();
         });

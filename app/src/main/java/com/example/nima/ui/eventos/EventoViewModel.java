@@ -9,6 +9,7 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class EventoViewModel extends ViewModel {
 
@@ -30,6 +31,20 @@ public class EventoViewModel extends ViewModel {
     public static void getEventos() {
         // ordenando por un atributo que solo tienen los clientes conseguimos que solo nos devuelva los clientes
         eventosRef.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                ArrayList<Evento> eventos = new ArrayList<>(task.getResult().toObjects(Evento.class));
+                eventos.sort(Evento::compareTo);
+                listaEventos.setValue(eventos);
+            }
+        });
+    }
+
+    /**
+     * Obtiene la lista de los eventos en una fecha concreta
+     */
+    public static void getEventos(Date date) {
+        // ordenando por un atributo que solo tienen los clientes conseguimos que solo nos devuelva los clientes
+        eventosRef.whereEqualTo("fecha", date).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 ArrayList<Evento> eventos = new ArrayList<>(task.getResult().toObjects(Evento.class));
                 eventos.sort(Evento::compareTo);
@@ -70,5 +85,12 @@ public class EventoViewModel extends ViewModel {
      */
     public static void flushEvento() {
         evento.setValue(null);
+    }
+
+    /**
+     * Este método se encarga de eliminar la lista de eventos del viewModel
+     */
+    public static void flushListaEventos() {
+        listaEventos.setValue(new ArrayList<>());
     }
 }

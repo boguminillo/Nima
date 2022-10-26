@@ -52,5 +52,6 @@
     <string name="logo_nima">Logo Nima</string>
     <string name="guardar_sesion">Guardar sesion</string>
     <string name="recuperar_contrase_a">Recuperar contraseña</string>
+    <string name="splashscreen_con_logo_nima">SplashScreen con logo Nima</string>
 
 </resources>

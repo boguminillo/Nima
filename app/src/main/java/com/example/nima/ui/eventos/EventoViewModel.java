@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.nima.data.model.Contacto;
 import com.example.nima.data.model.Evento;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -19,6 +20,7 @@ public class EventoViewModel extends ViewModel {
     private static final MutableLiveData<ArrayList<Evento>> listaEventos = new MutableLiveData<>();
     private static final MutableLiveData<Evento> evento = new MutableLiveData<>();
     private static final MutableLiveData<String> resultado = new MutableLiveData<>();
+    private static final MutableLiveData<LatLng> posicion = new MutableLiveData<>();
 
     LiveData<ArrayList<Evento>> getLista() {
         return listaEventos;
@@ -30,6 +32,10 @@ public class EventoViewModel extends ViewModel {
 
     LiveData<String> getResultado() {
         return resultado;
+    }
+
+    LiveData<LatLng> getPosicion() {
+        return posicion;
     }
 
     /**
@@ -136,5 +142,15 @@ public class EventoViewModel extends ViewModel {
      */
     public static void flushListaEventos() {
         listaEventos.setValue(new ArrayList<>());
+    }
+
+    /**
+     * Metodo para guardar la posicion del mapa
+     *
+     * @param latLng posicion del mapa
+     */
+    public static void setUbicacion(LatLng latLng) {
+
+        posicion.setValue(latLng);
     }
 }

@@ -13,18 +13,14 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/lista_de_eventos" />
         <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
-        <item
             android:id="@+id/nav_lista_de_contactos"
             android:icon="?attr/actionModeShareDrawable"
             android:title="@string/lista_de_contactos"
             android:visible="true" />
         <item
-            android:id="@+id/nav_mapa"
-            android:icon="@android:drawable/ic_dialog_map"
-            android:title="@string/mapa" />
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_gallery" />
     </group>
 
 </menu>

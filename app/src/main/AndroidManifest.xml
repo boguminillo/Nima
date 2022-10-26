@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.nima">
+    package="com.example.nima" >
 
     <application
         android:allowBackup="true"
@@ -12,40 +12,31 @@
         android:roundIcon="@drawable/logonima"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nima"
-        tools:targetApi="31">
-        <!--
-             TODO: Before you run your application, you need a Google Maps API key.
+        tools:targetApi="31" >
 
-             To get one, follow the directions here:
-
-                https://developers.google.com/maps/documentation/android-sdk/get-api-key
-
-             Once you have your API key (it starts with "AIza"), define a new property in your
-             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
-             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
-        -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="YOUR_API_KEY" />
+            android:value="AIzaSyCX4erv5t2pW4BF6Q287lYov05xP2R8kDs" />
+
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:label="@string/title_activity_main"
-            android:theme="@style/Theme.Nima"
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.Nima"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".ui.login.LoginActivity"
             android:exported="false"
-            android:theme="@style/Theme.Nima"
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.Nima"
             tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".SplashScreen"
             android:exported="true"
-            android:theme="@style/Theme.Nima"
             android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity">
+            android:theme="@style/Theme.Nima"
+            tools:ignore="LockedOrientationActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

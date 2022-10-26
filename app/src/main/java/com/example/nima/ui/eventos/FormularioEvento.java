@@ -2,10 +2,13 @@ package com.example.nima.ui.eventos;
 
 import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
+import android.location.Address;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -17,6 +20,7 @@ import com.example.nima.R;
 import com.example.nima.data.model.Evento;
 import com.example.nima.databinding.FragmentFormularioEventoBinding;
 import com.example.nima.ui.contactos.ContactoViewModel;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -65,6 +69,25 @@ public class FormularioEvento extends Fragment {
             });
             datePickerDialog.getDatePicker().setMinDate(System.currentTimeMillis());
             datePickerDialog.show();
+        });
+        // funcion del boton de mostrar ubicacion
+        binding.btnMapa.setOnClickListener(v -> {
+            String direccion = binding.idDireccion.getText().toString();
+            // si no hay direccion no se mostrara el mapa
+            if (direccion.isEmpty()) {
+                Toast.makeText(getContext(), "Introduce una direccion", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            Geocoder geocoder = new Geocoder(getContext());
+            try {
+                Address address = geocoder.getFromLocationName(direccion, 1).get(0);
+                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                EventoViewModel.setUbicacion(latLng);
+                // abrimos el mapa
+                getParentFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main, new MapsFragment()).addToBackStack(null).commit();
+            } catch (Exception e) {
+                Toast.makeText(getContext(), "No se ha podido encontrar la direccion", Toast.LENGTH_SHORT).show();
+            }
         });
         // funcion del boton de guardar
         binding.btnGuardar.setOnClickListener(v -> {

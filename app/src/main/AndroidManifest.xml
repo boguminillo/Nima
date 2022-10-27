@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.nima" >
+    package="com.example.nima">
 
     <application
         android:allowBackup="true"
@@ -12,7 +12,7 @@
         android:roundIcon="@drawable/logonima"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nima"
-        tools:targetApi="31" >
+        tools:targetApi="31">
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -36,7 +36,7 @@
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.Nima"
-            tools:ignore="LockedOrientationActivity" >
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

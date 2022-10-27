@@ -21,6 +21,7 @@ public class EventoViewModel extends ViewModel {
     private static final MutableLiveData<Evento> evento = new MutableLiveData<>();
     private static final MutableLiveData<String> resultado = new MutableLiveData<>();
     private static final MutableLiveData<LatLng> posicion = new MutableLiveData<>();
+    private static final MutableLiveData<String> direccion = new MutableLiveData<>();
 
     LiveData<ArrayList<Evento>> getLista() {
         return listaEventos;
@@ -30,12 +31,16 @@ public class EventoViewModel extends ViewModel {
         return evento;
     }
 
-    LiveData<String> getResultado() {
+    public LiveData<String> getResultado() {
         return resultado;
     }
 
     LiveData<LatLng> getPosicion() {
         return posicion;
+    }
+
+    LiveData<String> getDireccion() {
+        return direccion;
     }
 
     /**
@@ -86,11 +91,11 @@ public class EventoViewModel extends ViewModel {
                 DocumentSnapshot doc = task.getResult();
                 // si el contacto ya existe no se añade
                 if (doc.exists()) {
-                    resultado.setValue("El contacto ya existe");
+                    resultado.setValue("El evento ya existe");
                     return;
                 }
                 eventosRef.document(evento.getNombre()).set(evento);
-                resultado.setValue("Contacto añadido");
+                resultado.setValue("Evento añadido");
             }
         });
     }
@@ -108,16 +113,16 @@ public class EventoViewModel extends ViewModel {
                     DocumentSnapshot doc = task.getResult();
                     // si el contacto con el nombre nuevo ya existe no se añade
                     if (doc.exists()) {
-                        resultado.setValue("Ya existe un contacto con ese nombre");
+                        resultado.setValue("Ya existe un evento con ese nombre");
                     } else {
                         eventosRef.document(evento.getNombre()).set(evento);
-                        resultado.setValue("Contacto actualizado");
+                        resultado.setValue("Evento actualizado");
                     }
                 }
             });
         } else {
             eventosRef.document(evento.getNombre()).set(evento);
-            resultado.setValue("Contacto actualizado");
+            resultado.setValue("Evento actualizado");
         }
     }
 
@@ -145,12 +150,32 @@ public class EventoViewModel extends ViewModel {
     }
 
     /**
+     * Este metodo se encarga de eliminar el resultado del viewModel
+     */
+    public static void flushResultado() {
+        resultado.setValue(null);
+    }
+
+    /**
+     * Este metodo se encarga de eliminar la posicion del viewModel
+     */
+    public static void flushPosicion() {
+        posicion.setValue(null);
+    }
+
+    /**
+     * Este metodo se encarga de eliminar la direccion del viewModel
+     */
+    public static void flushDireccion() {
+        direccion.setValue(null);
+    }
+
+    /**
      * Metodo para guardar la posicion del mapa
      *
      * @param latLng posicion del mapa
      */
     public static void setUbicacion(LatLng latLng) {
-
         posicion.setValue(latLng);
     }
 }

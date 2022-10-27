@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -58,8 +59,8 @@ public class ListaEventos extends Fragment {
                 }
             };
             lvEventos.setAdapter(adaptador);
-            });
-            return vista;
-        }
-
+        });
+        return vista;
     }
+
+}

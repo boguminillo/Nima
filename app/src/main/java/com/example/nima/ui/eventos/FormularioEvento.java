@@ -14,6 +14,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.preference.PreferenceManager;
 
 import com.example.nima.R;
@@ -52,6 +54,13 @@ public class FormularioEvento extends Fragment {
                 binding.btnBorrar.setVisibility(View.VISIBLE);
             }
         });
+        // observador que cambiara la direccion si es que se ha seleccionado un lugar en el mapa
+        mViewModel.getDireccion().observe(getViewLifecycleOwner(), direccion -> {
+            if (direccion != null) {
+                binding.idDireccion.setText(direccion);
+                EventoViewModel.flushDireccion();
+            }
+        });
         // funcion al pulsar el campo de fecha
         binding.idFecha.setOnClickListener(v -> {
             DatePickerDialog datePickerDialog = new DatePickerDialog(getContext());
@@ -73,21 +82,20 @@ public class FormularioEvento extends Fragment {
         // funcion del boton de mostrar ubicacion
         binding.btnMapa.setOnClickListener(v -> {
             String direccion = binding.idDireccion.getText().toString();
-            // si no hay direccion no se mostrara el mapa
-            if (direccion.isEmpty()) {
-                Toast.makeText(getContext(), "Introduce una direccion", Toast.LENGTH_SHORT).show();
-                return;
+            // Si hay una direccion escrita la buscamos
+            if (!direccion.isEmpty()) {
+                Geocoder geocoder = new Geocoder(getContext());
+                try {
+                    Address address = geocoder.getFromLocationName(direccion, 1).get(0);
+                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                    EventoViewModel.setUbicacion(latLng);
+                } catch (Exception e) {
+                    Toast.makeText(getContext(), "No se ha podido encontrar la direccion", Toast.LENGTH_SHORT).show();
+                }
             }
-            Geocoder geocoder = new Geocoder(getContext());
-            try {
-                Address address = geocoder.getFromLocationName(direccion, 1).get(0);
-                LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                EventoViewModel.setUbicacion(latLng);
-                // abrimos el mapa
-                getParentFragmentManager().beginTransaction().replace(R.id.nav_host_fragment_content_main, new MapsFragment()).addToBackStack(null).commit();
-            } catch (Exception e) {
-                Toast.makeText(getContext(), "No se ha podido encontrar la direccion", Toast.LENGTH_SHORT).show();
-            }
+            // se abre el mapa
+            NavController navController = Navigation.findNavController(vista);
+            navController.navigate(R.id.nav_mapa);
         });
         // funcion del boton de guardar
         binding.btnGuardar.setOnClickListener(v -> {

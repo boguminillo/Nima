@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -72,14 +73,14 @@ public class Calendario extends Fragment {
                 }
             };
             lvEventos.setAdapter(adaptador);
-            });
-            return vista;
-        }
-
-        @Override
-        public void onResume() {
-            EventoViewModel.flushListaEventos();
-            super.onResume();
-        }
-
+        });
+        return vista;
     }
+
+    @Override
+    public void onResume() {
+        EventoViewModel.flushListaEventos();
+        super.onResume();
+    }
+
+}

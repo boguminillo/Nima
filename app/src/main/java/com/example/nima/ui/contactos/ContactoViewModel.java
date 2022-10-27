@@ -33,7 +33,7 @@ public class ContactoViewModel extends ViewModel {
         return cliente;
     }
 
-    LiveData<String> getResultado() {
+    public LiveData<String> getResultado() {
         return resultado;
     }
 

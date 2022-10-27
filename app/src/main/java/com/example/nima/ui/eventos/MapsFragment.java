@@ -33,12 +33,15 @@ public class MapsFragment extends Fragment {
         @Override
         public void onMapReady(@NonNull GoogleMap googleMap) {
             EventoViewModel mViewModel = new ViewModelProvider(requireActivity()).get(EventoViewModel.class);
+            // observador para mover el mapa a la posicion del evento
             mViewModel.getPosicion().observe(getViewLifecycleOwner(), posicion -> {
                 if (posicion != null) {
                     googleMap.addMarker(new MarkerOptions().position(posicion).title("Posicion del evento"));
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(posicion, 17));
                 }
+                EventoViewModel.flushPosicion();
             });
+
         }
     };
 

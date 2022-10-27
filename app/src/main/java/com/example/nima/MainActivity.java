@@ -7,10 +7,12 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_calendario, R.id.nav_gallery, R.id.nav_lista_de_eventos, R.id.nav_formulario_evento, R.id.nav_lista_de_contactos, R.id.nav_formulario_cliente, R.id.nav_formulario_proveedor, R.id.nav_opciones)
+                R.id.nav_calendario, R.id.nav_gallery, R.id.nav_lista_de_eventos, R.id.nav_formulario_evento, R.id.nav_mapa, R.id.nav_lista_de_contactos, R.id.nav_formulario_cliente, R.id.nav_formulario_proveedor, R.id.nav_opciones)
                 .setOpenableLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
@@ -64,6 +66,23 @@ public class MainActivity extends AppCompatActivity {
             ContactoViewModel.flushContacto();
             navController.navigate(R.id.nav_formulario_proveedor);
             binding.appBarMain.btnMenu.collapse();
+        });
+
+        EventoViewModel eventoViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(EventoViewModel.class);
+        // observador que vigilara los resultados de las operaciones de eventos
+        eventoViewModel.getResultado().observe(this, resultado -> {
+            if (resultado != null) {
+                Toast.makeText(this, resultado, Toast.LENGTH_SHORT).show();
+                EventoViewModel.flushResultado();
+            }
+        });
+        ContactoViewModel contactoViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(ContactoViewModel.class);
+        // observador para comprobar el resultado de las operaciones de contactos
+        contactoViewModel.getResultado().observe(this, resultado -> {
+            if (resultado !=null) {
+                Toast.makeText(this, resultado, Toast.LENGTH_SHORT).show();
+                ContactoViewModel.flushResultado();
+            }
         });
     }
 

@@ -1,26 +1,30 @@
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <PreferenceCategory app:title="Tema">
+    <PreferenceCategory app:title="@string/tema">
 
         <SwitchPreferenceCompat
-            app:key="temaOscuro"
-            app:title="Temas oscuro" />
+            app:key="@string/tema_defecto"
+            app:title="@string/label_tema_defecto" />
+
+        <SwitchPreferenceCompat
+            app:key="@string/tema_oscuro"
+            app:title="@string/label_tema_oscuro" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="Guardar sesión">
+    <PreferenceCategory app:title="@string/guardar_sesion">
 
         <SwitchPreferenceCompat
-            app:key="autoLogin"
-            app:title="Iniciar sesion automaticamente" />
+            app:key="@string/auto_login"
+            app:title="@string/label_auto_login" />
 
     </PreferenceCategory>
 
-    <PreferenceCategory app:title="Formato">
+    <PreferenceCategory app:title="@string/formato">
         
         <EditTextPreference
-            app:key="formatoFechas"
-            app:title="Formato de las fechas" />
+            app:key="@string/formato_fechas"
+            app:title="@string/label_formato_fechas" />
 
     </PreferenceCategory>
 

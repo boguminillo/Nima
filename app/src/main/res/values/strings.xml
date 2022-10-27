@@ -54,5 +54,12 @@
     <string name="recuperar_contrase_a">Recuperar contraseña</string>
     <string name="splashscreen_con_logo_nima">SplashScreen con logo Nima</string>
     <string name="mostrar_ubicacion">Mostrar ubicacion</string>
+    <string name="label_tema_oscuro">Tema oscuro</string>
+    <string name="label_tema_defecto">Usar tema por defecto</string>
+    <string name="tema_defecto">temaPorDefecto</string>
+    <string name="tema">Tema</string>
+    <string name="label_auto_login">Iniciar sesion automaticamente</string>
+    <string name="label_formato_fechas">Formato de las fechas</string>
+    <string name="formato">Formato</string>
 
 </resources>

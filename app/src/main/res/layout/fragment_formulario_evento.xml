@@ -26,18 +26,31 @@
         android:inputType="text"
         android:minHeight="48dp" />
 
-
-    <EditText
-        android:id="@+id/idDireccion"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:autofillHints="postalAddress"
-        android:ems="10"
-        android:hint="@string/direccion"
-        android:inputType="textPostalAddress"
-        android:minHeight="48dp" />
+        android:orientation="horizontal"
 
+        android:gravity="center_horizontal">
+
+        <EditText
+            android:id="@+id/idDireccion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:autofillHints="postalAddress"
+            android:ems="10"
+            android:gravity="start|top"
+            android:hint="@string/direccion"
+            android:inputType="textMultiLine"
+            android:minHeight="48dp" />
+
+        <Button
+            android:id="@+id/btnMapa"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="@android:drawable/ic_dialog_map"/>
+    </LinearLayout>
 
     <EditText
         android:id="@+id/idDescripcion"
@@ -57,12 +70,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:autofillHints="date"
+        android:clickable="true"
         android:ems="10"
+        android:focusable="false"
         android:hint="@string/fecha"
         android:inputType="date"
         android:minHeight="48dp"
-        android:clickable="true"
-        android:focusable="false"
         tools:ignore="KeyboardInaccessibleWidget" />
 
     <View
@@ -70,11 +83,6 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <Button
-        android:id="@+id/btnMapa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/mostrar_ubicacion" />
 
     <LinearLayout
         android:layout_width="match_parent"

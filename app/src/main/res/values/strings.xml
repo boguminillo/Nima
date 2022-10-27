@@ -16,7 +16,7 @@
     <string name="nav_header_title">NIMA</string>
     <string name="nav_header_subtitle">nima@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
+    <string name="action_settings">Opciones</string>
 
     <string name="menu_home">Calendario</string>
     <string name="menu_gallery">Galeria</string>
@@ -48,7 +48,7 @@
     <string name="tema_oscuro">temaOscuro</string>
     <string name="auto_login">autoLogin</string>
     <string name="formato_fechas">formatoFechas</string>
-    <string name="logout">Logout</string>
+    <string name="logout">Salir</string>
     <string name="logo_nima">Logo Nima</string>
     <string name="guardar_sesion">Guardar sesion</string>
     <string name="recuperar_contrase_a">Recuperar contraseña</string>

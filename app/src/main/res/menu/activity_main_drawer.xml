@@ -6,15 +6,15 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_calendario"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/baseline_event_24"
             android:title="@string/calendario" />
         <item
             android:id="@+id/nav_lista_de_eventos"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/list_alt_48"
             android:title="@string/lista_de_eventos" />
         <item
             android:id="@+id/nav_lista_de_contactos"
-            android:icon="?attr/actionModeShareDrawable"
+            android:icon="@drawable/baseline_account_circle_24"
             android:title="@string/lista_de_contactos"
             android:visible="true" />
         <item

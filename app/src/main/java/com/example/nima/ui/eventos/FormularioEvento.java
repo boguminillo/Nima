@@ -53,13 +53,6 @@ public class FormularioEvento extends Fragment {
                 binding.btnBorrar.setVisibility(View.VISIBLE);
             }
         });
-        // observador que cambiara la direccion si es que se ha seleccionado un lugar en el mapa
-        mViewModel.getDireccion().observe(getViewLifecycleOwner(), direccion -> {
-            if (direccion != null) {
-                binding.idDireccion.setText(direccion);
-                EventoViewModel.flushDireccion();
-            }
-        });
         // funcion al pulsar el campo de fecha
         binding.idFecha.setOnClickListener(v -> {
             DatePickerDialog datePickerDialog = new DatePickerDialog(getContext());

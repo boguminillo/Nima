@@ -12,6 +12,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 public class EventoViewModel extends ViewModel {
 
@@ -20,7 +21,6 @@ public class EventoViewModel extends ViewModel {
     private static final MutableLiveData<Evento> evento = new MutableLiveData<>();
     private static final MutableLiveData<String> resultado = new MutableLiveData<>();
     private static final MutableLiveData<LatLng> posicion = new MutableLiveData<>();
-    private static final MutableLiveData<String> direccion = new MutableLiveData<>();
 
     LiveData<ArrayList<Evento>> getLista() {
         return listaEventos;
@@ -36,10 +36,6 @@ public class EventoViewModel extends ViewModel {
 
     LiveData<LatLng> getPosicion() {
         return posicion;
-    }
-
-    LiveData<String> getDireccion() {
-        return direccion;
     }
 
     /**
@@ -149,7 +145,7 @@ public class EventoViewModel extends ViewModel {
      * @param dir direccion del mapa
      */
     public static void setDireccion(String dir) {
-        direccion.setValue(dir);
+        Objects.requireNonNull(evento.getValue()).setDireccion(dir);
     }
 
     /**
@@ -178,12 +174,5 @@ public class EventoViewModel extends ViewModel {
      */
     public static void flushPosicion() {
         posicion.setValue(null);
-    }
-
-    /**
-     * Este metodo se encarga de eliminar la direccion del viewModel
-     */
-    public static void flushDireccion() {
-        direccion.setValue(null);
     }
 }

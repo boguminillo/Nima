@@ -1,9 +1,11 @@
 package com.example.nima.ui.eventos;
 
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -15,10 +17,14 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.io.IOException;
 
 public class MapsFragment extends Fragment {
 
+    private Marker marcador = null;
     private final OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -36,12 +42,27 @@ public class MapsFragment extends Fragment {
             // observador para mover el mapa a la posicion del evento
             mViewModel.getPosicion().observe(getViewLifecycleOwner(), posicion -> {
                 if (posicion != null) {
-                    googleMap.addMarker(new MarkerOptions().position(posicion).title("Posicion del evento"));
+                    if (marcador != null) {
+                        marcador.remove();
+                    }
+                    marcador = googleMap.addMarker(new MarkerOptions().position(posicion).title("Posicion del evento"));
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(posicion, 17));
+                    EventoViewModel.flushPosicion();
                 }
-                EventoViewModel.flushPosicion();
             });
-
+            // Evento para seleccionar nuevo lugar en el mapa
+            googleMap.setOnMapLongClickListener(latLng -> {
+                if (marcador != null) marcador.remove();
+                marcador = googleMap.addMarker(new MarkerOptions().position(latLng).title("Posicion del evento"));
+                Geocoder geocoder = new Geocoder(getContext());
+                String direccion;
+                try {
+                    direccion = geocoder.getFromLocation(latLng.latitude, latLng.longitude, 1).get(0).getAddressLine(0);
+                    EventoViewModel.setDireccion(direccion);
+                } catch (IOException e) {
+                    Toast.makeText(getContext(), "Error al obtener la direccion", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
     };
 

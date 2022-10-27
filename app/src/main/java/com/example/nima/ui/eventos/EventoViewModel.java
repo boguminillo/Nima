@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.example.nima.data.model.Contacto;
 import com.example.nima.data.model.Evento;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.firestore.CollectionReference;
@@ -72,15 +71,6 @@ public class EventoViewModel extends ViewModel {
     }
 
     /**
-     * Este método se encarga de guardar la informacion del evento seleccionado
-     *
-     * @param e el evento seleccionado
-     */
-    public static void setEvento(Evento e) {
-        evento.setValue(e);
-    }
-
-    /**
      * Este método se encarga de añadir un evento a la base de datos
      *
      * @param evento evento a añadir
@@ -136,6 +126,33 @@ public class EventoViewModel extends ViewModel {
     }
 
     /**
+     * Este método se encarga de guardar la informacion del evento seleccionado
+     *
+     * @param e el evento seleccionado
+     */
+    public static void setEvento(Evento e) {
+        evento.setValue(e);
+    }
+
+    /**
+     * Metodo para guardar la posicion del mapa
+     *
+     * @param latLng posicion del mapa
+     */
+    public static void setPosicion(LatLng latLng) {
+        posicion.setValue(latLng);
+    }
+
+    /**
+     * Metodo para guardar la direccion del mapa
+     *
+     * @param dir direccion del mapa
+     */
+    public static void setDireccion(String dir) {
+        direccion.setValue(dir);
+    }
+
+    /**
      * Este método se encarga de eliminar el evento del viewModel
      */
     public static void flushEvento() {
@@ -168,14 +185,5 @@ public class EventoViewModel extends ViewModel {
      */
     public static void flushDireccion() {
         direccion.setValue(null);
-    }
-
-    /**
-     * Metodo para guardar la posicion del mapa
-     *
-     * @param latLng posicion del mapa
-     */
-    public static void setUbicacion(LatLng latLng) {
-        posicion.setValue(latLng);
     }
 }

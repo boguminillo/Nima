@@ -21,7 +21,6 @@ import androidx.preference.PreferenceManager;
 import com.example.nima.R;
 import com.example.nima.data.model.Evento;
 import com.example.nima.databinding.FragmentFormularioEventoBinding;
-import com.example.nima.ui.contactos.ContactoViewModel;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.text.ParseException;
@@ -88,7 +87,7 @@ public class FormularioEvento extends Fragment {
                 try {
                     Address address = geocoder.getFromLocationName(direccion, 1).get(0);
                     LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                    EventoViewModel.setUbicacion(latLng);
+                    EventoViewModel.setPosicion(latLng);
                 } catch (Exception e) {
                     Toast.makeText(getContext(), "No se ha podido encontrar la direccion", Toast.LENGTH_SHORT).show();
                 }

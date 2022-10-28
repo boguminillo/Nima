@@ -17,44 +17,40 @@
 
     <EditText
         android:id="@+id/idNombre"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:autofillHints="name"
-        android:ems="10"
         android:hint="@string/nombre"
         android:inputType="textPersonName"
         android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/idEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:autofillHints="emailAddress"
-        android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
         android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/idTelefono"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:autofillHints="phone"
-        android:ems="10"
         android:hint="@string/telefono"
         android:inputType="phone"
         android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/idDireccion"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
+        android:layout_margin="10dp"
         android:autofillHints="postalAddress"
-        android:ems="10"
         android:hint="@string/direccion"
         android:inputType="textPostalAddress"
         android:minHeight="48dp" />
@@ -63,8 +59,7 @@
         android:id="@+id/chkVip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:ems="10"
+        android:layout_margin="10dp"
         android:text="@string/vip" />
 
     <View

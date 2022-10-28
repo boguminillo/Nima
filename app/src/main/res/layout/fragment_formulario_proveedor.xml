@@ -17,54 +17,53 @@
 
     <EditText
         android:id="@+id/idNombre"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:autofillHints=""
-        android:ems="10"
+        android:layout_margin="10dp"
+        android:autofillHints="name"
         android:hint="@string/nombre"
         android:inputType="textPersonName"
         android:minHeight="48dp" />
 
     <EditText
         android:id="@+id/idEmail"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:ems="10"
+        android:layout_margin="10dp"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:autofillHints="emailAddress" />
 
     <EditText
         android:id="@+id/idTelefono"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:ems="10"
+        android:layout_margin="10dp"
         android:hint="@string/telefono"
         android:inputType="phone"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:autofillHints="phone" />
 
     <EditText
         android:id="@+id/idDireccion"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:ems="10"
+        android:layout_margin="10dp"
         android:hint="@string/direccion"
         android:inputType="textPostalAddress"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:autofillHints="postalAddress" />
 
     <EditText
         android:id="@+id/idProducto"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="5dp"
-        android:ems="10"
+        android:layout_margin="10dp"
         android:hint="@string/producto"
         android:inputType="textUri"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:importantForAutofill="no" />
 
     <View
         android:layout_width="wrap_content"
@@ -82,7 +81,8 @@
             android:layout_height="wrap_content"
             android:background="?colorPrimary"
             android:text="@string/cancelar"
-            android:layout_weight="1"  />
+            android:layout_weight="1"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnBorrar"
@@ -91,7 +91,8 @@
             android:background="?colorError"
             android:text="@string/borrar"
             android:layout_weight="1"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            tools:ignore="ButtonStyle" />
 
         <Button
             android:id="@+id/btnGuardar"
@@ -99,7 +100,8 @@
             android:layout_height="wrap_content"
             android:background="?colorPrimary"
             android:text="@string/guardar"
-            android:layout_weight="1"  />
+            android:layout_weight="1"
+            tools:ignore="ButtonStyle" />
     </LinearLayout>
 
 </LinearLayout>

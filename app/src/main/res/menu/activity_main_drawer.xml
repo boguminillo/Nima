@@ -21,6 +21,10 @@
             android:id="@+id/gallery"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_gallery" />
+        <item
+            android:id="@+id/nav_mapa"
+            android:icon="@android:drawable/ic_dialog_map"
+            android:title="@string/mapa" />
     </group>
 
 </menu>

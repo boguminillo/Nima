@@ -75,7 +75,7 @@ public class EventoViewModel extends ViewModel {
         eventosRef.document(evento.getNombre()).get().addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 DocumentSnapshot doc = task.getResult();
-                // si el contacto ya existe no se añade
+                // si el evento ya existe no se añade
                 if (doc.exists()) {
                     resultado.setValue("El evento ya existe");
                     return;
@@ -97,7 +97,7 @@ public class EventoViewModel extends ViewModel {
             eventosRef.document(evento.getNombre()).get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     DocumentSnapshot doc = task.getResult();
-                    // si el contacto con el nombre nuevo ya existe no se añade
+                    // si el evento con el nombre nuevo ya existe no se añade
                     if (doc.exists()) {
                         resultado.setValue("Ya existe un evento con ese nombre");
                     } else {

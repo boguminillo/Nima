@@ -42,7 +42,7 @@ public class FormularioEvento extends Fragment {
         //formato que utilizaremos para mostrar la fecha
         String formatoFecha = PreferenceManager.getDefaultSharedPreferences(requireContext()).getString(getResources().getString(R.string.formato_fechas), "dd/MM/yyyy");
         @SuppressLint("SimpleDateFormat") SimpleDateFormat formato = new SimpleDateFormat(formatoFecha);
-        // observador que cargara los datos del cliente si es que se ha seleccionado uno
+        // observador que cargara los datos del evento si es que se ha seleccionado uno
         mViewModel.getEvento().observe(getViewLifecycleOwner(), evento -> {
             if (evento != null) {
                 binding.idNombre.setText(evento.getNombre());

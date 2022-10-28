@@ -1,5 +1,6 @@
 package com.example.nima.ui.eventos;
 
+import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,10 +14,12 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.nima.R;
+import com.example.nima.data.model.Evento;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -24,7 +27,7 @@ import java.io.IOException;
 
 public class MapsFragment extends Fragment {
 
-    private Marker marcador = null;
+    private Marker marcador;
     private final OnMapReadyCallback callback = new OnMapReadyCallback() {
 
         /**
@@ -39,21 +42,37 @@ public class MapsFragment extends Fragment {
         @Override
         public void onMapReady(@NonNull GoogleMap googleMap) {
             EventoViewModel mViewModel = new ViewModelProvider(requireActivity()).get(EventoViewModel.class);
+            EventoViewModel.getEventos();
             // observador para mover el mapa a la posicion del evento
             mViewModel.getPosicion().observe(getViewLifecycleOwner(), posicion -> {
                 if (posicion != null) {
                     if (marcador != null) {
                         marcador.remove();
                     }
-                    marcador = googleMap.addMarker(new MarkerOptions().position(posicion).title("Posicion del evento"));
+                    marcador = googleMap.addMarker(new MarkerOptions().position(posicion).title("Nueva posicion del evento"));
                     googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(posicion, 17));
                     EventoViewModel.flushPosicion();
+                }
+            });
+            // observador para mostrar los eventos en el mapa
+            mViewModel.getLista().observe(getViewLifecycleOwner(), lista -> {
+                if (lista != null) {
+                    for (Evento evento : lista) {
+                        Geocoder geocoder = new Geocoder(getContext());
+                        try {
+                            Address direccion = geocoder.getFromLocationName(evento.getDireccion(), 1).get(0);
+                            LatLng pos = new LatLng(direccion.getLatitude(), direccion.getLongitude());
+                            googleMap.addMarker(new MarkerOptions().position(pos).title(evento.getNombre()));
+                        } catch (IOException e) {
+                            Toast.makeText(getContext(), "Error al obtener la direccion", Toast.LENGTH_SHORT).show();
+                        }
+                    }
                 }
             });
             // Evento para seleccionar nuevo lugar en el mapa
             googleMap.setOnMapLongClickListener(latLng -> {
                 if (marcador != null) marcador.remove();
-                marcador = googleMap.addMarker(new MarkerOptions().position(latLng).title("Posicion del evento"));
+                marcador = googleMap.addMarker(new MarkerOptions().position(latLng).title("Nueva posicion del evento"));
                 Geocoder geocoder = new Geocoder(getContext());
                 String direccion;
                 try {
@@ -82,5 +101,11 @@ public class MapsFragment extends Fragment {
         if (mapFragment != null) {
             mapFragment.getMapAsync(callback);
         }
+    }
+
+    @Override
+    public void onResume() {
+        EventoViewModel.flushListaEventos();
+        super.onResume();
     }
 }

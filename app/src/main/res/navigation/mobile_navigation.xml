@@ -48,6 +48,12 @@
         tools:layout="@layout/fragment_formulario_proveedor" />
 
     <fragment
+        android:id="@+id/gallery"
+        android:name="com.example.nima.ui.gallery.Gallery"
+        android:label="@string/menu_gallery"
+        tools:layout="@layout/fragment_gallery" />
+
+    <fragment
         android:id="@+id/nav_opciones"
         android:name="com.example.nima.ui.SettingsFragment" />
 

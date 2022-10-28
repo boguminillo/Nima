@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.nima.R;
@@ -17,8 +17,8 @@ import java.util.ArrayList;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-    private ArrayList<Cell>galleryList;
-    private Context context;
+    private final ArrayList<Cell>galleryList;
+    private final Context context;
 
     public MyAdapter(Context context, ArrayList<Cell>galleryList){
         this.galleryList = galleryList;
@@ -30,6 +30,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
 
 
+    @NonNull
     @Override
     public ViewHolder onCreateViewHolder( ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.cell,viewGroup,false  );
@@ -41,14 +42,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         viewHolder.title.setText(galleryList.get(i).getTitle());
         viewHolder.img.setScaleType(ImageView.ScaleType.CENTER_CROP);
         viewHolder.img.setImageResource(galleryList.get(i).getImg());
-        viewHolder.img.setOnClickListener(new  View.OnClickListener(){
-            @Override
-            public void onClick(View view){
-                Toast.makeText(context,"Image",Toast.LENGTH_SHORT);
-            }
+        viewHolder.img.setOnClickListener(view -> Toast.makeText(context,"Image",Toast.LENGTH_SHORT));
 
-
-        });
     }
 
     @Override
@@ -57,14 +52,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         return galleryList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public static class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView title;
-        private ImageView img;
+        private final TextView title;
+        private final ImageView img;
         public ViewHolder(View view){
             super(view);
-            title =(TextView) view.findViewById(R.id.title);
-            img=(ImageView) view.findViewById(R.id.img);
+            title = view.findViewById(R.id.title);
+            img= view.findViewById(R.id.img);
 
         }
     }

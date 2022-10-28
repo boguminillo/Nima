@@ -18,7 +18,7 @@
             android:title="@string/lista_de_contactos"
             android:visible="true" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/gallery"
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_gallery" />
     </group>

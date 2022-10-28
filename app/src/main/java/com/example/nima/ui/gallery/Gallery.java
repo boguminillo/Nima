@@ -1,25 +1,31 @@
 
 package com.example.nima.ui.gallery;
 
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.example.nima.R;
+import com.example.nima.databinding.FragmentGalleryBinding;
 
 import java.util.ArrayList;
 
-public class Gallery extends AppCompatActivity {
-private final String image_titles[]= {
+public class Gallery extends Fragment {
+private final String[] image_titles = {
 
         "Img1",
         "Img2",
         "Img3",
         "Img4",
 };
-    private final Integer image_ids[]= {
+    private final Integer[] image_ids = {
 
             R.drawable.evento1,
             R.drawable.evento2,
@@ -27,19 +33,20 @@ private final String image_titles[]= {
             R.drawable.evento4,
     };
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gallery);
-        RecyclerView recyclerView= (RecyclerView) findViewById(R.id.gallery);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        FragmentGalleryBinding binding = FragmentGalleryBinding.inflate(inflater, container, false);
+
+        RecyclerView recyclerView= binding.gallery;
         recyclerView.setHasFixedSize(true);
 
-        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(),3);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getContext(),1, RecyclerView.HORIZONTAL,true);
         recyclerView.setLayoutManager(layoutManager);
 
         ArrayList<Cell> cells = prepareData();
-        MyAdapter adapter = new MyAdapter(getApplicationContext(),cells);
+        MyAdapter adapter = new MyAdapter(getContext(),cells);
         recyclerView.setAdapter(adapter);
-
+        return binding.getRoot();
     }
 
 

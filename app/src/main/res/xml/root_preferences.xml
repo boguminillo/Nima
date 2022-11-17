@@ -4,7 +4,8 @@
 
         <SwitchPreferenceCompat
             app:key="@string/tema_defecto"
-            app:title="@string/label_tema_defecto" />
+            app:title="@string/label_tema_defecto"
+            app:defaultValue="true"/>
 
         <SwitchPreferenceCompat
             app:key="@string/tema_oscuro"
